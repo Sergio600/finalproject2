@@ -13,6 +13,7 @@ public class Attachment {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
+
     @Column(name = "blob", nullable = false)
     private Blob blob;
 
