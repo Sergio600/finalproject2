@@ -1,11 +1,10 @@
 package com.sergio.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Blob;
 
+@Entity
+@Table(name = "attachment")
 public class Attachment {
 
     @Id
@@ -17,11 +16,13 @@ public class Attachment {
     @Column(name = "blob", nullable = false)
     private Blob blob;
 
-    // надо вставить связь
-    private int ticketId;
-
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "ticket_id", nullable = false)
+    private Ticket ticket;
+
 
     public Attachment() {
     }
@@ -42,19 +43,19 @@ public class Attachment {
         this.blob = blob;
     }
 
-    public int getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 }

@@ -1,11 +1,10 @@
 package com.sergio.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
+@Table(name = "history")
 public class History {
 
     @Id
@@ -13,17 +12,19 @@ public class History {
     @Column(name = "id", unique = true, nullable = false)
     private String id;
 
-    // добавить связь
-    private int ticketId;
-
     @Column(name = "date", nullable = false)
     private Timestamp date;
 
     @Column(name = "action")
     private String action;
 
-    // Добавить связь
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "ticket_id", nullable = false)
+    private Ticket ticket;
 
     @Column(name = "description")
     private String description;
@@ -36,14 +37,6 @@ public class History {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public int getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
     }
 
     public Timestamp getDate() {
@@ -62,12 +55,20 @@ public class History {
         this.action = action;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     public String getDescription() {

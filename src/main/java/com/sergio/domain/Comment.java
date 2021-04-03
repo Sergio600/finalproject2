@@ -1,11 +1,10 @@
 package com.sergio.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
+@Table(name = "comment")
 public class Comment {
 
     @Id
@@ -13,17 +12,19 @@ public class Comment {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    //вставить связь
-    private int userId;
-
     @Column(name = "text")
     private String text;
 
     @Column(name = "date")
     private Timestamp date;
 
-    // вставить связь
-    private int ticketId;
+    @ManyToOne
+    @JoinColumn(name = "ticket_id", nullable = false)
+    private Ticket ticket;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Comment() {
     }
@@ -34,14 +35,6 @@ public class Comment {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getText() {
@@ -60,13 +53,19 @@ public class Comment {
         this.date = date;
     }
 
-    public int getTicketId() {
-        return ticketId;
+    public Ticket getTicket() {
+        return ticket;
     }
 
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

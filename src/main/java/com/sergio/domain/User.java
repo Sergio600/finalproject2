@@ -2,6 +2,7 @@ package com.sergio.domain;
 
 import com.sergio.enums.Role;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table (name = "USER")
@@ -18,6 +19,7 @@ public class User {
     @Column(name="last_name", nullable = false)
     private String lastName;
 
+    // здесь надо доработать
     @Column(name = "role_id", nullable = false)
     private Role role;
 
@@ -27,6 +29,17 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    private List<Feedback> feedbackList;
+
+    @OneToMany (mappedBy = "user")
+    private List<Ticket> ticketList;
+
+    @OneToMany(mappedBy = "user")
+    private List<History> historyList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> commentList;
 
     public User() {
     }
@@ -77,5 +90,37 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Feedback> getFeedbackList() {
+        return feedbackList;
+    }
+
+    public void setFeedbackList(List<Feedback> feedbackList) {
+        this.feedbackList = feedbackList;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
+    }
+
+    public List<History> getHistoryList() {
+        return historyList;
+    }
+
+    public void setHistoryList(List<History> historyList) {
+        this.historyList = historyList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 }

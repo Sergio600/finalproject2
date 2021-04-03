@@ -2,14 +2,13 @@ package com.sergio.domain;
 
 import com.sergio.enums.State;
 import com.sergio.enums.Urgency;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
+@Entity
+@Table(name = "ticket")
 public class Ticket {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,24 +27,43 @@ public class Ticket {
     @Column(name = "desired_resolution_date", nullable = false)
     private Timestamp desiredResolutionDate;
 
-    //вставить связь
-    private int assignee_id;
-
-    //вставить связь
-    private int ownerId;
-
+    //еще надо здесь доработать
     @Column(name = "state_id", nullable = false)
-    private State stateId;
+    private State state;
 
-    // вставить связь
-    private int categoryId;
-
+    // и здесь доработать
     @Column(name = "urgency_id")
-    private Urgency urgencyId;
+    private Urgency urgency;
 
-    //вставить связь
-    private int approverId;
+    @OneToOne(mappedBy = "ticket")
+    private Attachment attachment;
 
+    @OneToMany(mappedBy = "ticket")
+    private List<Feedback> feedbackList;
+
+    @OneToMany(mappedBy = "ticket")
+    private List<Comment> commentList;
+
+    @OneToMany(mappedBy = "ticket")
+    private List<History> historyList;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+
+    // есть вопрос как соединять пользователей
+    @ManyToOne
+    @JoinColumn(name = "assignee_id")
+    private User userAssignee;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User userOwner;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User userApprover;
 
     public Ticket() {
     }
@@ -90,51 +108,83 @@ public class Ticket {
         this.desiredResolutionDate = desiredResolutionDate;
     }
 
-    public int getAssignee_id() {
-        return assignee_id;
-    }
-
-    public void setAssignee_id(int assignee_id) {
-        this.assignee_id = assignee_id;
-    }
-
-    public int getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
-    }
-
     public State getStateId() {
-        return stateId;
+        return state;
     }
 
-    public void setStateId(State stateId) {
-        this.stateId = stateId;
+    public void setStateId(State state) {
+        this.state = state;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public Urgency getUrgency() {
+        return urgency;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setUrgencyId(Urgency urgency) {
+        this.urgency = urgency;
     }
 
-    public Urgency getUrgencyId() {
-        return urgencyId;
+    public Attachment getAttachment() {
+        return attachment;
     }
 
-    public void setUrgencyId(Urgency urgencyId) {
-        this.urgencyId = urgencyId;
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
     }
 
-    public int getApproverId() {
-        return approverId;
+    public List<Feedback> getFeedbackList() {
+        return feedbackList;
     }
 
-    public void setApproverId(int approverId) {
-        this.approverId = approverId;
+    public void setFeedbackList(List<Feedback> feedbackList) {
+        this.feedbackList = feedbackList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public List<History> getHistoryList() {
+        return historyList;
+    }
+
+    public void setHistoryList(List<History> historyList) {
+        this.historyList = historyList;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public User getUserAssignee() {
+        return userAssignee;
+    }
+
+    public void setUserAssignee(User userAssignee) {
+        this.userAssignee = userAssignee;
+    }
+
+    public User getUserOwner() {
+        return userOwner;
+    }
+
+    public void setUserOwner(User userOwner) {
+        this.userOwner = userOwner;
+    }
+
+    public User getUserApprover() {
+        return userApprover;
+    }
+
+    public void setUserApprover(User userApprover) {
+        this.userApprover = userApprover;
     }
 }
