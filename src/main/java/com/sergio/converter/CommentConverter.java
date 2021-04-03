@@ -5,5 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Lazy
-public class TicketConverter {
+public class CommentConverter {
+
+
 }

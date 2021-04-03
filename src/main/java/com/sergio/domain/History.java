@@ -10,7 +10,7 @@ public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
-    private String id;
+    private int id;
 
     @Column(name = "date", nullable = false)
     private Timestamp date;
@@ -31,11 +31,11 @@ public class History {
 
     public History() {}
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -8,7 +8,7 @@ public class FeedbackDto implements Serializable {
     private int id;
     private int rate;
     private Timestamp date;
-    private String taxt;
+    private String text;
     private UserDto user;
     private TicketDto ticket;
 
@@ -39,12 +39,12 @@ public class FeedbackDto implements Serializable {
         this.date = date;
     }
 
-    public String getTaxt() {
-        return taxt;
+    public String getText() {
+        return text;
     }
 
-    public void setTaxt(String taxt) {
-        this.taxt = taxt;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public UserDto getUser() {

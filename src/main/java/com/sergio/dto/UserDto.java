@@ -13,6 +13,7 @@ public class UserDto implements Serializable {
     private Role role;
     private String email;
     private String password;
+
     private List<FeedbackDto>feedbackDtoList;
     private List<TicketDto> ticketDtoList;
     private List<HistoryDto> historyDtoList;
