@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Table(name = "ticket")
+@Table(name = "Ticket")
 public class Ticket {
 
     @Id
@@ -28,7 +28,7 @@ public class Ticket {
     private Timestamp desiredResolutionDate;
 
     //еще надо здесь доработать
-    @Column(name = "state_id", nullable = false)
+    @Column(name = "state_id")
     private State state;
 
     // и здесь доработать
@@ -48,7 +48,7 @@ public class Ticket {
     private List<History> historyList;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id")
     private Category category;
 
 

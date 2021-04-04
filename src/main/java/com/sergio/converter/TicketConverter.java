@@ -1,10 +1,15 @@
 package com.sergio.converter;
 
+import com.sergio.domain.History;
 import com.sergio.domain.Ticket;
+import com.sergio.dto.HistoryDto;
 import com.sergio.dto.TicketDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Lazy
@@ -70,5 +75,19 @@ public class TicketConverter {
         ticketDto.setFeedbackList(feedbackConverter.toDtoList(ticket.getFeedbackList()));
 
         return ticketDto;
+    }
+
+    public List<Ticket> fromDtoList(List<TicketDto> dtoList){
+        return dtoList
+                .stream()
+                .map(this::fromDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<TicketDto> toDtoList(List<Ticket> list){
+        return list
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 }

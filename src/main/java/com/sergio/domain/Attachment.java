@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Blob;
 
 @Entity
-@Table(name = "attachment")
+@Table(name = "Attachment")
 public class Attachment {
 
     @Id

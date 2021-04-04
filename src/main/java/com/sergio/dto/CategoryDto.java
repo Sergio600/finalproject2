@@ -1,7 +1,6 @@
 package com.sergio.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class CategoryDto implements Serializable {
 
