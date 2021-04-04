@@ -1,7 +1,5 @@
 package com.sergio.dto;
 
-import com.sergio.domain.Ticket;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -11,7 +9,6 @@ public class CommentDto implements Serializable {
     private String text;
     private Timestamp date;
     private TicketDto ticket;
-    private UserDto user;
 
     public CommentDto() {
     }
@@ -48,11 +45,4 @@ public class CommentDto implements Serializable {
         this.ticket = ticket;
     }
 
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
-    }
 }

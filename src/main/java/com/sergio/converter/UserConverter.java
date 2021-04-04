@@ -32,11 +32,6 @@ public class UserConverter {
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
 
-        user.setFeedbackList(feedbackConverter.fromDtoList(dto.getFeedbackDtoList()));
-        user.setTicketList(ticketConverter.fromDtoList(dto.getTicketDtoList()));
-        user.setHistoryList(historyConverter.fromDtoList(dto.getHistoryDtoList()));
-        user.setCommentList(commentConverter.fromDtoList(dto.getCommentDtoList()));
-
         return user;
     }
 
@@ -50,11 +45,6 @@ public class UserConverter {
         userDto.setRole(user.getRole());
         userDto.setEmail(user.getEmail());
         userDto.setPassword(user.getPassword());
-
-        userDto.setFeedbackDtoList(feedbackConverter.toDtoList(user.getFeedbackList()));
-        userDto.setTicketDtoList(ticketConverter.toDtoList(user.getTicketList()));
-        userDto.setHistoryDtoList(historyConverter.toDtoList(user.getHistoryList()));
-        userDto.setCommentDtoList(commentConverter.toDtoList(user.getCommentList()));
 
         return userDto;
     }

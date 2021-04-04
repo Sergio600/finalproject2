@@ -7,7 +7,7 @@ public class CategoryDto implements Serializable {
 
     private int id;
     private String name;
-    private List<TicketDto> ticketList;
+
 
     public CategoryDto() {
     }
@@ -28,11 +28,4 @@ public class CategoryDto implements Serializable {
         this.name = name;
     }
 
-    public List<TicketDto> getTicketList() {
-        return ticketList;
-    }
-
-    public void setTicketList(List<TicketDto> ticketList) {
-        this.ticketList = ticketList;
-    }
 }

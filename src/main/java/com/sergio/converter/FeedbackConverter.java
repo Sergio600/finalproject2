@@ -14,9 +14,6 @@ import java.util.stream.Collectors;
 public class FeedbackConverter {
 
     @Autowired
-    UserConverter userConverter;
-
-    @Autowired
     TicketConverter ticketConverter;
 
     public Feedback fromDto (FeedbackDto dto){
@@ -25,8 +22,6 @@ public class FeedbackConverter {
         feedback.setRate(dto.getRate());
         feedback.setDate(dto.getDate());
         feedback.setText(dto.getText());
-
-        feedback.setUser(userConverter.fromDto(dto.getUser()));
         feedback.setTicket(ticketConverter.fromDto(dto.getTicket()));
 
         return feedback;
@@ -39,9 +34,7 @@ public class FeedbackConverter {
         feedbackDto.setRate(feedback.getRate());
         feedbackDto.setDate(feedback.getDate());
         feedbackDto.setText(feedback.getText());
-
-        feedbackDto.setUser(userConverter.toDto(feedback.getUser()));
-        feedbackDto.getTicket(ticketConverter.toDto(feedback.getTicket()));
+        feedbackDto.setTicket(ticketConverter.toDto(feedback.getTicket()));
 
         return feedbackDto;
     }

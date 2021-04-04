@@ -17,13 +17,14 @@ public class TicketDto implements Serializable {
     private State state;
     private Urgency urgency;
     private Attachment attachment;
-    private List<FeedbackDto> feedbackList;
-    private List<CommentDto> commentList;
-    private List<HistoryDto> historyList;
-    private CategoryDto category;
     private UserDto userAssignee;
     private UserDto userOwner;
     private UserDto userApprover;
+    private CategoryDto category;
+    private List<HistoryDto> historyList;
+    private List<CommentDto> commentList;
+    private List<FeedbackDto> feedbackList;
+
 
     public TicketDto() {
     }
@@ -92,38 +93,6 @@ public class TicketDto implements Serializable {
         this.attachment = attachment;
     }
 
-    public List<FeedbackDto> getFeedbackList() {
-        return feedbackList;
-    }
-
-    public void setFeedbackList(List<FeedbackDto> feedbackList) {
-        this.feedbackList = feedbackList;
-    }
-
-    public List<CommentDto> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<CommentDto> commentList) {
-        this.commentList = commentList;
-    }
-
-    public List<HistoryDto> getHistoryList() {
-        return historyList;
-    }
-
-    public void setHistoryList(List<HistoryDto> historyList) {
-        this.historyList = historyList;
-    }
-
-    public CategoryDto getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryDto category) {
-        this.category = category;
-    }
-
     public UserDto getUserAssignee() {
         return userAssignee;
     }
@@ -146,5 +115,37 @@ public class TicketDto implements Serializable {
 
     public void setUserApprover(UserDto userApprover) {
         this.userApprover = userApprover;
+    }
+
+    public CategoryDto getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryDto category) {
+        this.category = category;
+    }
+
+    public List<HistoryDto> getHistoryList() {
+        return historyList;
+    }
+
+    public void setHistoryList(List<HistoryDto> historyList) {
+        this.historyList = historyList;
+    }
+
+    public List<CommentDto> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<CommentDto> commentList) {
+        this.commentList = commentList;
+    }
+
+    public List<FeedbackDto> getFeedbackList() {
+        return feedbackList;
+    }
+
+    public void setFeedbackList(List<FeedbackDto> feedbackList) {
+        this.feedbackList = feedbackList;
     }
 }

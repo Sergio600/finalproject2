@@ -3,7 +3,6 @@ package com.sergio.dto;
 import com.sergio.enums.Role;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class UserDto implements Serializable {
 
@@ -13,11 +12,6 @@ public class UserDto implements Serializable {
     private Role role;
     private String email;
     private String password;
-
-    private List<FeedbackDto>feedbackDtoList;
-    private List<TicketDto> ticketDtoList;
-    private List<HistoryDto> historyDtoList;
-    private List<CommentDto> commentDtoList;
 
     public UserDto() {
     }
@@ -68,37 +62,5 @@ public class UserDto implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<FeedbackDto> getFeedbackDtoList() {
-        return feedbackDtoList;
-    }
-
-    public void setFeedbackDtoList(List<FeedbackDto> feedbackDtoList) {
-        this.feedbackDtoList = feedbackDtoList;
-    }
-
-    public List<TicketDto> getTicketDtoList() {
-        return ticketDtoList;
-    }
-
-    public void setTicketDtoList(List<TicketDto> ticketDtoList) {
-        this.ticketDtoList = ticketDtoList;
-    }
-
-    public List<HistoryDto> getHistoryDtoList() {
-        return historyDtoList;
-    }
-
-    public void setHistoryDtoList(List<HistoryDto> historyDtoList) {
-        this.historyDtoList = historyDtoList;
-    }
-
-    public List<CommentDto> getCommentDtoList() {
-        return commentDtoList;
-    }
-
-    public void setCommentDtoList(List<CommentDto> commentDtoList) {
-        this.commentDtoList = commentDtoList;
     }
 }

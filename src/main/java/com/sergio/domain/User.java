@@ -29,17 +29,18 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Feedback> feedbackList;
 
-    @OneToMany (mappedBy = "user")
+    @OneToMany (mappedBy = "user", fetch = FetchType.LAZY)
     private List<Ticket> ticketList;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<History> historyList;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Comment> commentList;
+
 
     public User() {
     }

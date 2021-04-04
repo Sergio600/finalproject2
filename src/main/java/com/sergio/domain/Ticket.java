@@ -108,11 +108,11 @@ public class Ticket {
         this.desiredResolutionDate = desiredResolutionDate;
     }
 
-    public State getStateId() {
+    public State getState() {
         return state;
     }
 
-    public void setStateId(State state) {
+    public void setState(State state) {
         this.state = state;
     }
 
@@ -120,7 +120,7 @@ public class Ticket {
         return urgency;
     }
 
-    public void setUrgencyId(Urgency urgency) {
+    public void setUrgency(Urgency urgency) {
         this.urgency = urgency;
     }
 

@@ -9,7 +9,6 @@ public class HistoryDto implements Serializable {
     private Timestamp date;
     private String action;
     private String description;
-    private UserDto user;
     private TicketDto ticket;
 
     public HistoryDto() {
@@ -45,14 +44,6 @@ public class HistoryDto implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
     }
 
     public TicketDto getTicket() {
