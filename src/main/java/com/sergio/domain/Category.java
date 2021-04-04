@@ -1,7 +1,11 @@
 package com.sergio.domain;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
@@ -13,11 +17,8 @@ public class Category {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
-
-    @OneToMany(mappedBy = "category")
-    private List<Ticket> ticketList;
 
     public Category() {
     }
@@ -36,13 +37,5 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Ticket> getTicketList() {
-        return ticketList;
-    }
-
-    public void setTicketList(List<Ticket> ticketList) {
-        this.ticketList = ticketList;
     }
 }

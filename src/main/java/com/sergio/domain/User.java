@@ -16,30 +16,31 @@ public class User {
     @Column(name="first_name", nullable = false)
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name="last_name", nullable = false)
     private String lastName;
 
     // здесь надо доработать
-    @Column(name = "role_id")
+    @Column(name = "role_id", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private Role role;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Feedback> feedbackList;
-
-    @OneToMany (mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Ticket> ticketList;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<History> historyList;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Comment> commentList;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Feedback> feedbackList;
+//
+//    @OneToMany (mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Ticket> ticketList;
+//
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<History> historyList;
+//
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Comment> commentList;
 
 
     public User() {
@@ -93,35 +94,35 @@ public class User {
         this.password = password;
     }
 
-    public List<Feedback> getFeedbackList() {
-        return feedbackList;
-    }
-
-    public void setFeedbackList(List<Feedback> feedbackList) {
-        this.feedbackList = feedbackList;
-    }
-
-    public List<Ticket> getTicketList() {
-        return ticketList;
-    }
-
-    public void setTicketList(List<Ticket> ticketList) {
-        this.ticketList = ticketList;
-    }
-
-    public List<History> getHistoryList() {
-        return historyList;
-    }
-
-    public void setHistoryList(List<History> historyList) {
-        this.historyList = historyList;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
+//    public List<Feedback> getFeedbackList() {
+//        return feedbackList;
+//    }
+//
+//    public void setFeedbackList(List<Feedback> feedbackList) {
+//        this.feedbackList = feedbackList;
+//    }
+//
+//    public List<Ticket> getTicketList() {
+//        return ticketList;
+//    }
+//
+//    public void setTicketList(List<Ticket> ticketList) {
+//        this.ticketList = ticketList;
+//    }
+//
+//    public List<History> getHistoryList() {
+//        return historyList;
+//    }
+//
+//    public void setHistoryList(List<History> historyList) {
+//        this.historyList = historyList;
+//    }
+//
+//    public List<Comment> getCommentList() {
+//        return commentList;
+//    }
+//
+//    public void setCommentList(List<Comment> commentList) {
+//        this.commentList = commentList;
+//    }
 }

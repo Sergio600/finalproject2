@@ -11,10 +11,8 @@ public class UserDto implements Serializable {
     private String lastName;
     private Role role;
     private String email;
-    private String password;
 
-    public UserDto() {
-    }
+    public UserDto() {}
 
     public int getId() {
         return id;
@@ -56,11 +54,4 @@ public class UserDto implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

@@ -39,16 +39,16 @@ public class TicketConverter {
         ticket.setDesiredResolutionDate(dto.getDesiredResolutionDate());
         ticket.setState(dto.getState());
         ticket.setUrgency(dto.getUrgency());
-        ticket.setAttachment(dto.getAttachment());
+//        ticket.setAttachment(dto.getAttachment());
 
         ticket.setUserAssignee(userConverter.fromDto(dto.getUserAssignee()));
         ticket.setUserOwner(userConverter.fromDto(dto.getUserOwner()));
         ticket.setUserApprover(userConverter.fromDto(dto.getUserApprover()));
         ticket.setCategory(categoryConverter.fromDto(dto.getCategory()));
 
-        ticket.setHistoryList(historyConverter.fromDtoList(dto.getHistoryList()));
-        ticket.setCommentList(commentConverter.fromDtoList(dto.getCommentList()));
-        ticket.setFeedbackList(feedbackConverter.fromDtoList(dto.getFeedbackList()));
+//        ticket.setHistoryList(historyConverter.fromDtoList(dto.getHistoryList()));
+//        ticket.setCommentList(commentConverter.fromDtoList(dto.getCommentList()));
+//        ticket.setFeedbackList(feedbackConverter.fromDtoList(dto.getFeedbackList()));
 
         return ticket;
     }
@@ -63,16 +63,16 @@ public class TicketConverter {
         ticketDto.setDesiredResolutionDate(ticket.getDesiredResolutionDate());
         ticketDto.setState(ticket.getState());
         ticketDto.setUrgency(ticket.getUrgency());
-        ticketDto.setAttachment(ticket.getAttachment());
+//        ticketDto.setAttachment(ticket.getAttachment());
 
         ticketDto.setUserAssignee(userConverter.toDto(ticket.getUserAssignee()));
         ticketDto.setUserOwner(userConverter.toDto(ticket.getUserOwner()));
         ticketDto.setUserApprover(userConverter.toDto(ticket.getUserApprover()));
         ticketDto.setCategory(categoryConverter.toDto(ticket.getCategory()));
 
-        ticketDto.setHistoryList(historyConverter.toDtoList(ticket.getHistoryList()));
-        ticketDto.setCommentList(commentConverter.toDtoList(ticket.getCommentList()));
-        ticketDto.setFeedbackList(feedbackConverter.toDtoList(ticket.getFeedbackList()));
+//        ticketDto.setHistoryList(historyConverter.toDtoList(ticket.getHistoryList()));
+//        ticketDto.setCommentList(commentConverter.toDtoList(ticket.getCommentList()));
+//        ticketDto.setFeedbackList(feedbackConverter.toDtoList(ticket.getFeedbackList()));
 
         return ticketDto;
     }

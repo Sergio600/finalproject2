@@ -1,26 +1,29 @@
-INSERT INTO USER(ID, FIRST_NAME, PASSWORD)
-VALUES (1, "USER", '100');
+INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
+VALUES (1, 'Sergio', 'Samusev', 1, 'sergio600@mail.ru', '100');
 
 INSERT INTO CATEGORY(ID, NAME)
-VALUES (1, "Application & Services");
+VALUES (1, 'Application & Services');
 
 INSERT INTO CATEGORY(ID, NAME)
-VALUES (2, "Benefits & Paper Work");
+VALUES (2, 'Benefits & Paper Work');
 
 INSERT INTO CATEGORY(ID, NAME)
-VALUES (3, "Hardware & Softwware");
+VALUES (3, 'Hardware & Softwware');
 
 INSERT INTO CATEGORY(ID, NAME)
-VALUES (4, "People Management");
+VALUES (4, 'People Management');
 
 INSERT INTO CATEGORY(ID, NAME)
-VALUES (5, "Security & Acceess");
+VALUES (5, 'Security & Acceess');
 
 INSERT INTO CATEGORY(ID, NAME)
-VALUES (6, "Workplaces & Facilities");
+VALUES (6, 'Workplaces & Facilities');
+
+INSERT INTO HISTORY(ID, TICKET_ID, DATE, ACTION, USER_ID, DESCRIPTION)
+VALUES (1, 2, '2020-04.01', 'Action', 1, 'Description of history');
 
 INSERT INTO TICKET(ID, NAME, DESCRIPTION, CREATED_ON, DESIRED_RESOLUTION_DATE, ASSIGNEE_ID, OWNER_ID, CATEGORY_ID, APPROVER_ID)
-VALUES (1, "Ticket 1", "Test ticket description", 2020-01-01, 2020-02-02, 1, 1, 3, 1);
+VALUES (1, 'Ticket 1', 'Test ticket description', '2020-01-01', '2020-02-02', 1, 1, 3, 1);
 
 INSERT INTO TICKET(ID, NAME, DESCRIPTION, CREATED_ON, DESIRED_RESOLUTION_DATE, ASSIGNEE_ID, OWNER_ID, CATEGORY_ID, APPROVER_ID)
-VALUES (2, "Ticket 2", "Test 2 ticket description", 2020-02-02, 2020-03-03, 1, 1, 1, 1);
+VALUES (2, 'Ticket 2', 'Test 2 ticket description', '2020-02-02', '2020-03-03', 1, 1, 1, 1);

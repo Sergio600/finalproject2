@@ -12,6 +12,10 @@ public class History {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
+    @ManyToOne
+    @JoinColumn(name = "ticket_id", nullable = false)
+    private Ticket ticket;
+
     @Column(name = "date", nullable = false)
     private Timestamp date;
 
@@ -21,10 +25,6 @@ public class History {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "ticket_id", nullable = false)
-    private Ticket ticket;
 
     @Column(name = "description")
     private String description;

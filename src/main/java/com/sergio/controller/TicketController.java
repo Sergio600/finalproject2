@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.security.Principal;
 
 @RestController
@@ -37,5 +36,4 @@ public class TicketController {
         ticketService.editTicket(ticketDto);
         return ResponseEntity.ok("Ticket is edit ");
     }
-
 }

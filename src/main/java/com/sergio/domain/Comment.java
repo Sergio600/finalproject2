@@ -12,19 +12,19 @@ public class Comment {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column(name = "text")
-    private String text;
-
-    @Column(name = "date")
-    private Timestamp date;
-
-    @ManyToOne
-    @JoinColumn(name = "ticket_id", nullable = false)
-    private Ticket ticket;
-
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Column(name = "text", nullable = false)
+    private String text;
+
+    @Column(name = "date", nullable = false)
+    private Timestamp date;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ticket_id", nullable = false)
+    private Ticket ticket;
 
     public Comment() {
     }

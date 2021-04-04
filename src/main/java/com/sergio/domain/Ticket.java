@@ -2,67 +2,65 @@ package com.sergio.domain;
 
 import com.sergio.enums.State;
 import com.sergio.enums.Urgency;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Table(name = "Ticket")
 public class Ticket {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 500)
     private String description;
 
     @Column(name = "created_on", nullable = false)
     private Timestamp createdOn;
 
-    @Column(name = "desired_resolution_date", nullable = false)
+    @Column(name = "desired_resolution_date")
     private Timestamp desiredResolutionDate;
 
-    //еще надо здесь доработать
-    @Column(name = "state_id")
-    private State state;
-
-    // и здесь доработать
-    @Column(name = "urgency_id")
-    private Urgency urgency;
-
-    @OneToOne(mappedBy = "ticket")
-    private Attachment attachment;
-
-    @OneToMany(mappedBy = "ticket")
-    private List<Feedback> feedbackList;
-
-    @OneToMany(mappedBy = "ticket")
-    private List<Comment> commentList;
-
-    @OneToMany(mappedBy = "ticket")
-    private List<History> historyList;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-
-    // есть вопрос как соединять пользователей
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "assignee_id")
     private User userAssignee;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id", nullable = false)
     private User userOwner;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    //еще надо здесь доработать
+    @Column(name = "state_id", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private State state;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    @Column(name = "urgency_id", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Urgency urgency;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "approver_id")
     private User userApprover;
 
     public Ticket() {
@@ -122,38 +120,6 @@ public class Ticket {
 
     public void setUrgency(Urgency urgency) {
         this.urgency = urgency;
-    }
-
-    public Attachment getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(Attachment attachment) {
-        this.attachment = attachment;
-    }
-
-    public List<Feedback> getFeedbackList() {
-        return feedbackList;
-    }
-
-    public void setFeedbackList(List<Feedback> feedbackList) {
-        this.feedbackList = feedbackList;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
-
-    public List<History> getHistoryList() {
-        return historyList;
-    }
-
-    public void setHistoryList(List<History> historyList) {
-        this.historyList = historyList;
     }
 
     public Category getCategory() {

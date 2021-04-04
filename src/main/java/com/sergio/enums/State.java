@@ -1,11 +1,11 @@
 package com.sergio.enums;
 
 public enum State {
-    Draft,
-    New,
-    Approved,
-    Declined,
-    InProgress,
-    Done,
-    Canceled
+    DRAFT,
+    NEW,
+    APPROVED,
+    DECLINED,
+    INPROGRESS,
+    DONE,
+    CANCELED
 }

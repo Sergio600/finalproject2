@@ -8,6 +8,7 @@ public class FeedbackDto implements Serializable {
     private int id;
     private int rate;
     private Timestamp date;
+
     private String text;
     private TicketDto ticket;
 
