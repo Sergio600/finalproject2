@@ -10,6 +10,8 @@ import java.util.List;
 public class TicketDto implements Serializable {
 
     private int id;
+
+    @Pattern(regexp = "[a-z0-9`.\"()]{0,100}")
     private String name;
     private String description;
     private Timestamp createdOn;
