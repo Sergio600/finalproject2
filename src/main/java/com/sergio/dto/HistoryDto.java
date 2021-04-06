@@ -1,5 +1,6 @@
 package com.sergio.dto;
 
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -8,6 +9,8 @@ public class HistoryDto implements Serializable {
     private int id;
     private Timestamp date;
     private String action;
+
+    @Pattern(regexp = "[a-z0-9~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}]{0,500}", message = "incorrectly description")
     private String description;
     private TicketDto ticket;
 

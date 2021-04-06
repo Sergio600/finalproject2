@@ -3,6 +3,7 @@ package com.sergio.dto;
 import com.sergio.domain.Attachment;
 import com.sergio.enums.State;
 import com.sergio.enums.Urgency;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -11,8 +12,10 @@ public class TicketDto implements Serializable {
 
     private int id;
 
-    @Pattern(regexp = "[a-z0-9`.\"()]{0,100}")
+    @Pattern(regexp = "[a-z0-9~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}]{0,100}", message = "incorrectly name")
     private String name;
+
+    @Pattern(regexp = "[a-z0-9~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}]{0,500}", message = "incorrectly description")
     private String description;
     private Timestamp createdOn;
     private Timestamp desiredResolutionDate;

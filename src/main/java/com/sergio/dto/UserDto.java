@@ -2,6 +2,7 @@ package com.sergio.dto;
 
 import com.sergio.enums.Role;
 
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 public class UserDto implements Serializable {
@@ -10,6 +11,8 @@ public class UserDto implements Serializable {
     private String firstName;
     private String lastName;
     private Role role;
+
+    @Pattern(regexp = "[a-z0-9~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}]{0,100}", message = "incorrectly name")
     private String email;
 
     public UserDto() {}
