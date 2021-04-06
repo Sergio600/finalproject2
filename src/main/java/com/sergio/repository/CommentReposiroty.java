@@ -16,9 +16,19 @@ public class CommentReposiroty {
     @Autowired
     SessionFactory sessionFactory;
 
-    public List<Comment> getCommentByTicketId(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Comment com where com.ticket_id = :id", Comment.class);
+    public Comment addCommentToTicket(Comment comment){
+        sessionFactory.getCurrentSession().save(comment);
+        return comment;
+    }
+
+    public List<Comment> getTicketComments(int id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Comment where ticket_id = :id");
         query.setParameter("id", id);
+        return query.list();
+    }
+
+    public List<Comment> getAllComments() {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Comment", Comment.class);
         return query.list();
     }
 }

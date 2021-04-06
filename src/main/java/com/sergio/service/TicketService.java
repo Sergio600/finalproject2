@@ -1,7 +1,11 @@
 package com.sergio.service;
 
 import com.sergio.converter.TicketConverter;
+import com.sergio.domain.Ticket;
+import com.sergio.domain.User;
 import com.sergio.dto.TicketDto;
+import com.sergio.enums.Role;
+import com.sergio.enums.State;
 import com.sergio.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +20,29 @@ public class TicketService {
     TicketRepository ticketRepository;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     TicketConverter ticketConverter;
 
-    public List<TicketDto> getAllTickets(Principal principal) {
-        return ticketConverter.toDtoList(ticketRepository.getAllTickets());
+    public List<Ticket> getAllTickets(Principal principal) {
+        return ticketRepository.getAllTickets();
     }
 
-    public void createTicket(TicketDto ticketDto, Principal principal) {
+    public Ticket getTicketById(int id) {
+        return ticketRepository.getById(id).get();
+    }
+
+    public void createTicket(TicketDto ticketDto, Principal principal, State state) {
 
     }
 
-    public void editTicket(TicketDto ticketDto) {
+    public void editTicket(int id, TicketDto ticketDto, Principal principal, State state) {
+
+    }
+
+    public List<Ticket> getUserTickets(Principal principal) {
+        User user = userService.getCurrentUser(principal.getName());
+        return ticketRepository.getTicketsByUser(user.getId());
     }
 }

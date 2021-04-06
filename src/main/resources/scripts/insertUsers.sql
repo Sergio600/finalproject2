@@ -1,5 +1,21 @@
 INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
-VALUES (1, 'Sergio', 'Samusev', 1, 'sergio600@mail.ru', '100');
+VALUES (1, 'Employee', 'User 1', 0, 'user1_mogilev@yopmail.com', 'P@ssword1');
+
+INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
+VALUES (2, 'Employee', 'User 2', 0, 'user2_mogilev@yopmail.com', 'P@ssword1');
+
+INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
+VALUES (3, 'Manager', 'Manager 1', 1, 'manager1_mogilev@yopmail.com', 'P@ssword1');
+
+INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
+VALUES (4, 'Manager', 'Manager 2', 1, 'manager2_mogilev@yopmail.com', 'P@ssword1');
+
+INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
+VALUES (5, 'Engineer', 'Engineer 1', 2, 'engineer1_mogilev@yopmail.com', 'P@ssword1');
+
+INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
+VALUES (6, 'Engineer', 'Engineer 2', 2, 'engineer2_mogilev@yopmail.com', 'P@ssword1');
+
 
 INSERT INTO CATEGORY(ID, NAME)
 VALUES (1, 'Application & Services');
@@ -19,11 +35,21 @@ VALUES (5, 'Security & Acceess');
 INSERT INTO CATEGORY(ID, NAME)
 VALUES (6, 'Workplaces & Facilities');
 
+INSERT INTO TICKET(ID, NAME, DESCRIPTION, CREATED_ON, DESIRED_RESOLUTION_DATE, ASSIGNEE_ID, OWNER_ID, STATE_ID, CATEGORY_ID, URGENCY_ID, APPROVER_ID)
+VALUES (1, 'Ticket 1', 'Test ticket description', '2020-01-01', '2020-02-02', 5, 1, 1, 1, 2, 3);
+
+INSERT INTO TICKET(ID, NAME, DESCRIPTION, CREATED_ON, DESIRED_RESOLUTION_DATE, ASSIGNEE_ID, OWNER_ID, STATE_ID, CATEGORY_ID, URGENCY_ID, APPROVER_ID)
+VALUES (2, 'Ticket 2', 'Test ticket description', '2020-01-01', '2020-02-02', 1, 1, 1, 1, 2, 1);
+
+INSERT INTO TICKET(ID, NAME, DESCRIPTION, CREATED_ON, DESIRED_RESOLUTION_DATE, ASSIGNEE_ID, OWNER_ID, STATE_ID, CATEGORY_ID, URGENCY_ID, APPROVER_ID)
+VALUES (3, 'Ticket 3', 'Test ticket 3 description', '2020-02-03', '2020-04-05', 1, 3, 5, 4, 1, 1);
+
 INSERT INTO HISTORY(ID, TICKET_ID, DATE, ACTION, USER_ID, DESCRIPTION)
-VALUES (1, 2, '2020-04.01', 'Action', 1, 'Description of history');
+VALUES (1, 1, '2020-04-01', 'Action', 1, 'Description of history');
 
-INSERT INTO TICKET(ID, NAME, DESCRIPTION, CREATED_ON, DESIRED_RESOLUTION_DATE, ASSIGNEE_ID, OWNER_ID, CATEGORY_ID, APPROVER_ID)
-VALUES (1, 'Ticket 1', 'Test ticket description', '2020-01-01', '2020-02-02', 1, 1, 3, 1);
+INSERT INTO COMMENT(ID, USER_ID, TEXT, DATE, TICKET_ID)
+VALUES (1, 1, 'It first comment of ticket ', '2020-04-06', 2);
 
-INSERT INTO TICKET(ID, NAME, DESCRIPTION, CREATED_ON, DESIRED_RESOLUTION_DATE, ASSIGNEE_ID, OWNER_ID, CATEGORY_ID, APPROVER_ID)
-VALUES (2, 'Ticket 2', 'Test 2 ticket description', '2020-02-02', '2020-03-03', 1, 1, 1, 1);
+INSERT INTO FEEDBACK(ID, USER_ID, RATE, DATE, TEXT, TICKET_ID)
+VALUES (1, 1, 5, '2020-07-07', 'FEEDBACK of TICKET!  ', 2);
+

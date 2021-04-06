@@ -1,6 +1,5 @@
 package com.sergio.service;
 
-import com.sergio.converter.UserConverter;
 import com.sergio.domain.User;
 import com.sergio.exception.InvalidArgumentException;
 import com.sergio.repository.UserRepository;
@@ -19,7 +18,6 @@ public class UserService {
         }
 
         User user = userRepository.getByEmail(email);
-
         return user;
 
     }

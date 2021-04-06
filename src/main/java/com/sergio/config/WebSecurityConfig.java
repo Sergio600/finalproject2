@@ -61,8 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select first_name, password, true from user where first_name=?")
-                .authoritiesByUsernameQuery("select first_name, 'ROLE_USER' from user where first_name =?");
+                .usersByUsernameQuery("select email, password, true from user where email =?")
+                .authoritiesByUsernameQuery("select email, 'ROLE_USER' from user where email =?");
     }
 
 //    @Bean (BeanIds.AUTHENTICATION_MANAGER)

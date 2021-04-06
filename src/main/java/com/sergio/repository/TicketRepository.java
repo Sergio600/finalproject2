@@ -17,16 +17,16 @@ public class TicketRepository {
     @Autowired
     SessionFactory sessionFactory;
 
-    public Ticket save(Ticket ticket){
+    public Ticket save(Ticket ticket) {
         sessionFactory.getCurrentSession().save(ticket);
         return ticket;
     }
 
-    public void updateTicket(Ticket ticket){
+    public void updateTicket(Ticket ticket) {
         sessionFactory.getCurrentSession().update(ticket);
     }
 
-    public Optional<Ticket> getById(int id){
+    public Optional<Ticket> getById(int id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticket t where t.id = :id");
         query.setParameter("id", id);
 
@@ -38,14 +38,17 @@ public class TicketRepository {
         }
     }
 
-    public List<Ticket> getAllTickets (){
+    public List<Ticket> getAllTickets() {
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticket", Ticket.class);
         return query.list();
     }
 
-    public List<Ticket> getAllTicketsByUser (){
-        Query query = sessionFactory.getCurrentSession().createQuery("from Ticket", Ticket.class);
+    public List<Ticket> getTicketsByUser(int ownerId) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticket where owner_id = :id", Ticket.class);
+        query.setParameter("id", ownerId);
         return query.list();
     }
+
+
 
 }
