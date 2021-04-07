@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -20,5 +21,10 @@ public class CategoryRepository {
         query.setParameter("id", id);
         Category category = (Category) query.getSingleResult();
         return category;
+    }
+
+    public List<Category> getCategories(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from Category", Category.class);
+        return query.list();
     }
 }

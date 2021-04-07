@@ -34,7 +34,6 @@ public class TicketService {
     }
 
     public void createTicket(TicketDto ticketDto, Principal principal, State state) {
-
     }
 
     public void editTicket(int id, TicketDto ticketDto, Principal principal, State state) {
@@ -43,6 +42,19 @@ public class TicketService {
 
     public List<Ticket> getUserTickets(Principal principal) {
         User user = userService.getCurrentUser(principal.getName());
-        return ticketRepository.getTicketsByUser(user.getId());
+
+        if (user.getRole() == Role.MANAGER) {
+            return ticketRepository.getTicketsByUserRoleManager(user);
+        }
+
+        if (user.getRole() == Role.ENGINEER) {
+            return ticketRepository.getTicketsByUserRoleEngineer(user);
+        }
+
+        if (user.getRole() == Role.EMPLOYEE) {
+            return ticketRepository.getTicketsByUserRoleEmployee(user);
+        }
+
+        return null;
     }
 }

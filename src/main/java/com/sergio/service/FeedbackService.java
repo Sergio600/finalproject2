@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.List;
 
 @Service
 public class FeedbackService {
@@ -17,7 +18,7 @@ public class FeedbackService {
 
     }
 
-    public Feedback getTicketFeedback(int id, Principal principal) {
+    public List<Feedback> getTicketFeedback(int id, Principal principal) {
         return feedbackRepository.getTicketFeedback(id);
     }
 }

@@ -36,8 +36,6 @@ public class TicketController {
         return ResponseEntity.ok(ticketConverter.toDtoList(ticketService.getAllTickets(principal)));
     }
 
-
-
     @GetMapping(value = "/{id}")
     public ResponseEntity getTicket(@PathVariable int id, Principal principal) {
         return ResponseEntity.ok(ticketConverter.toDto(ticketService.getTicketById(id)));
@@ -52,6 +50,6 @@ public class TicketController {
     @PutMapping(value = "/id")
     public ResponseEntity editTicket(@PathVariable int id, @RequestBody TicketDto ticketDto, Principal principal) {
         ticketService.editTicket(id, ticketDto, principal, State.NEW);
-        return ResponseEntity.ok("Ticket is edit ");
+        return ResponseEntity.ok("Ticket is edited ");
     }
 }

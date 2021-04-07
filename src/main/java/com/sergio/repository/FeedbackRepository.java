@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -20,9 +21,9 @@ public class FeedbackRepository {
         return feedback;
     }
 
-    public Feedback getTicketFeedback(int id){
+    public List<Feedback> getTicketFeedback(int id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Feedback where ticket_id = :id");
         query.setParameter("id", id);
-        return (Feedback) query.getSingleResult();
+        return query.list();
     }
 }
