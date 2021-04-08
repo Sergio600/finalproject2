@@ -52,7 +52,7 @@ public class TicketController {
         return ResponseEntity.ok("Ticket is created");
     }
 
-    @PostMapping (value = "/draft")
+    @PostMapping(value = "/draft")
     public ResponseEntity createTicketDraft(@RequestBody TicketDto ticketDto, Principal principal) {
         ticketService.createTicket(ticketConverter.fromDto(ticketDto), principal, State.DRAFT);
         return ResponseEntity.ok("Ticket draft is created");
@@ -60,10 +60,15 @@ public class TicketController {
 
     @PutMapping(value = "/id")
     public ResponseEntity editTicket(@PathVariable int id, @RequestBody TicketDto ticketDto, Principal principal) {
-        ticketService.editTicket(id, ticketDto, principal, State.NEW);
+        ticketService.editTicket(id, ticketConverter.fromDto(ticketDto), principal, State.NEW);
         return ResponseEntity.ok("Ticket is edited ");
     }
 
+    @PutMapping(value = "/{id}/draft")
+    public ResponseEntity editTicketDraft(@PathVariable int id, @RequestBody TicketDto ticketDto, Principal principal) {
+        ticketService.editTicket(id, ticketConverter.fromDto(ticketDto), principal, State.DRAFT);
+        return ResponseEntity.ok("Ticket draft is edited");
+    }
 
 
 

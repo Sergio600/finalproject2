@@ -40,8 +40,11 @@ public class TicketService {
         ticketRepository.save(ticket);
     }
 
-    public void editTicket(int id, TicketDto ticketDto, Principal principal, State state) {
-
+    public void editTicket(int id, Ticket ticket, Principal principal, State state) {
+        User user = userService.getCurrentUser(principal.getName());
+        ticket.setId(id);
+        ticket.setUserOwner(user);
+        ticketRepository.updateTicket(ticket);
     }
 
     public List<Ticket> getUserTicketsByRole(Principal principal) {
@@ -77,4 +80,8 @@ public class TicketService {
         }
         return null;
     }
+
+
+
+
 }
