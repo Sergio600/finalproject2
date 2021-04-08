@@ -27,8 +27,13 @@ public class TicketController {
     TicketConverter ticketConverter;
 
     @GetMapping()
-    public ResponseEntity getUserTickets(Principal principal) {
-        return ResponseEntity.ok(ticketConverter.toDtoList(ticketService.getUserTickets(principal)));
+    public ResponseEntity getUserTicketsByRole(Principal principal) {
+        return ResponseEntity.ok(ticketConverter.toDtoList(ticketService.getUserTicketsByRole(principal)));
+    }
+
+    @GetMapping(value = "/filter")
+    public ResponseEntity getUserTicketsFilter(Principal principal) {
+        return ResponseEntity.ok(ticketConverter.toDtoList(ticketService.getUserTicketsFilter(principal)));
     }
 
     @GetMapping(value = "/all")
@@ -41,10 +46,16 @@ public class TicketController {
         return ResponseEntity.ok(ticketConverter.toDto(ticketService.getTicketById(id)));
     }
 
-    @PostMapping
+    @PostMapping(value = "/create")
     public ResponseEntity createTicket(@RequestBody TicketDto ticketDto, Principal principal) {
-        ticketService.createTicket(ticketDto, principal, State.NEW);
+        ticketService.createTicket(ticketConverter.fromDto(ticketDto), principal, State.NEW);
         return ResponseEntity.ok("Ticket is created");
+    }
+
+    @PostMapping (value = "/draft")
+    public ResponseEntity createTicketDraft(@RequestBody TicketDto ticketDto, Principal principal) {
+        ticketService.createTicket(ticketConverter.fromDto(ticketDto), principal, State.DRAFT);
+        return ResponseEntity.ok("Ticket draft is created");
     }
 
     @PutMapping(value = "/id")
@@ -52,4 +63,9 @@ public class TicketController {
         ticketService.editTicket(id, ticketDto, principal, State.NEW);
         return ResponseEntity.ok("Ticket is edited ");
     }
+
+
+
+
+
 }

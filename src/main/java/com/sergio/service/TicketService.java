@@ -33,14 +33,18 @@ public class TicketService {
         return ticketRepository.getById(id).get();
     }
 
-    public void createTicket(TicketDto ticketDto, Principal principal, State state) {
+    public void createTicket(Ticket ticket, Principal principal, State state) {
+        User user = userService.getCurrentUser(principal.getName());
+        ticket.setUserOwner(user);
+        ticket.setState(state);
+        ticketRepository.save(ticket);
     }
 
     public void editTicket(int id, TicketDto ticketDto, Principal principal, State state) {
 
     }
 
-    public List<Ticket> getUserTickets(Principal principal) {
+    public List<Ticket> getUserTicketsByRole(Principal principal) {
         User user = userService.getCurrentUser(principal.getName());
 
         if (user.getRole() == Role.MANAGER) {
@@ -54,7 +58,23 @@ public class TicketService {
         if (user.getRole() == Role.EMPLOYEE) {
             return ticketRepository.getTicketsByUserRoleEmployee(user);
         }
+        return null;
+    }
 
+
+    public List<Ticket> getUserTicketsFilter(Principal principal) {
+        User user = userService.getCurrentUser(principal.getName());
+        if (user.getRole() == Role.EMPLOYEE) {
+            return ticketRepository.getTicketsByUserRoleEmployee(user);
+        }
+
+        if (user.getRole() == Role.MANAGER) {
+            return ticketRepository.getTicketsByUserRoleManagerFilter(user);
+        }
+
+        if (user.getRole() == Role.ENGINEER) {
+            return ticketRepository.getTicketsByUserRoleEngineerFilter(user);
+        }
         return null;
     }
 }

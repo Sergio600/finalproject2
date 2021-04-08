@@ -84,6 +84,23 @@ public class TicketRepository {
         return query.list();
     }
 
+    public List<Ticket> getTicketsByUserRoleManagerFilter(User user) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from Ticket where owner_id = :id " +
+                "or (approver_id = :approverID " +
+                "and state_id = :stateIdApproved)", Ticket.class);
+        query.setParameter("id", user.getId());
+        query.setParameter("approverID", user.getId());
+        query.setParameter("stateIdApproved", State.APPROVED.ordinal());
+        return query.list();
+    }
+
+    public List<Ticket> getTicketsByUserRoleEngineerFilter(User user) {
+        Query query = sessionFactory.getCurrentSession()
+                .createQuery("from Ticket where assignee_id = :id", Ticket.class);
+        query.setParameter("id", user.getId());
+        return query.list();
+    }
+
 
 
 

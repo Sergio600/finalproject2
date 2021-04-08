@@ -1,6 +1,7 @@
 package com.sergio.repository;
 
 import com.sergio.domain.History;
+import com.sergio.domain.Ticket;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,14 @@ public class HistoryRepository {
         return query.list();
     }
 
+    public List<History> getAllHistories(){
+        Query query = sessionFactory.getCurrentSession().createQuery("from History", History.class);
+        return query.list();
+    }
+
+
+    public History saveHistoryToTicket(History history) {
+        sessionFactory.getCurrentSession().save(history);
+        return history;
+    }
 }
