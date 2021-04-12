@@ -25,7 +25,7 @@ public class CommentSevice {
         return commentReposiroty.getTicketComments(id);
     }
 
-    public List<Comment> getAllComments(Principal principal) {
+    public List<Comment> getAllComments() {
         return commentReposiroty.getAllComments();
     }
 

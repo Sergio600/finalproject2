@@ -20,7 +20,7 @@ public class HistoryService {
     @Autowired
     TicketService ticketService;
 
-    public List<History> getAllHistories(Principal principal) {
+    public List<History> getAllHistories() {
         return historyRepository.getAllHistories();
     }
 

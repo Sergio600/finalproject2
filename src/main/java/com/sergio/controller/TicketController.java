@@ -6,6 +6,7 @@ import com.sergio.enums.State;
 import com.sergio.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping(value = "/tickets")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TicketController {
 
     @Autowired
@@ -37,12 +39,12 @@ public class TicketController {
     }
 
     @GetMapping(value = "/all")
-    public ResponseEntity getAllTickets(Principal principal) {
-        return ResponseEntity.ok(ticketConverter.toDtoList(ticketService.getAllTickets(principal)));
+    public ResponseEntity getAllTickets() {
+        return ResponseEntity.ok(ticketConverter.toDtoList(ticketService.getAllTickets()));
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity getTicket(@PathVariable int id, Principal principal) {
+    public ResponseEntity getTicket(@PathVariable int id) {
         return ResponseEntity.ok(ticketConverter.toDto(ticketService.getTicketById(id)));
     }
 

@@ -25,7 +25,7 @@ public class TicketService {
     @Autowired
     TicketConverter ticketConverter;
 
-    public List<Ticket> getAllTickets(Principal principal) {
+    public List<Ticket> getAllTickets() {
         return ticketRepository.getAllTickets();
     }
 
