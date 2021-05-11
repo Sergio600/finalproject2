@@ -39,7 +39,7 @@ public class TicketController {
     }
 
     @GetMapping(value = "/all")
-    public ResponseEntity getAllTickets() {
+    public ResponseEntity getAllTickets(Principal principal) {
         return ResponseEntity.ok(ticketConverter.toDtoList(ticketService.getAllTickets()));
     }
 

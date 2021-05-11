@@ -16,9 +16,6 @@ public class UserService {
         if (email == null || email == "") {
             throw new InvalidArgumentException("Name can't be null!");
         }
-
-        User user = userRepository.getByEmail(email);
-        return user;
-
+        return userRepository.getByEmail(email);
     }
 }
