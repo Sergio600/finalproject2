@@ -16,31 +16,41 @@ import java.util.List;
 @Service
 public class TicketService {
 
-    @Autowired
-    TicketRepository ticketRepository;
+    private final TicketRepository ticketRepository;
+    private final UserService userService;
+    private final TicketConverter ticketConverter;
+    private final CategoryService categoryService;
 
     @Autowired
-    UserService userService;
+    public TicketService(CategoryService categoryService,
+                         TicketConverter ticketConverter,
+                         UserService userService,
+                         TicketRepository ticketRepository) {
+        this.categoryService = categoryService;
+        this.ticketConverter = ticketConverter;
+        this.userService = userService;
+        this.ticketRepository = ticketRepository;
 
-    @Autowired
-    TicketConverter ticketConverter;
+    }
 
     public List<Ticket> getAllTickets() {
         return ticketRepository.getAllTickets();
     }
 
-    public Ticket getTicketById(int id) {
+    public Ticket getTicketById(Long id) {
         return ticketRepository.getById(id).get();
     }
 
-    public void createTicket(Ticket ticket, Principal principal, State state) {
+    public void createTicket(TicketDto ticketDto, Principal principal, State state) {
         User user = userService.getCurrentUser(principal.getName());
+        Ticket ticket = ticketConverter.fromDto(ticketDto);
         ticket.setUserOwner(user);
         ticket.setState(state);
+        ticket.setCategory(categoryService.getCategoryById(ticketDto.getCategory().getId()));
         ticketRepository.save(ticket);
     }
 
-    public void editTicket(int id, Ticket ticket, Principal principal, State state) {
+    public void editTicket(Long id, Ticket ticket, Principal principal, State state) {
         User user = userService.getCurrentUser(principal.getName());
         ticket.setId(id);
         ticket.setUserOwner(user);

@@ -17,8 +17,9 @@ public class HistoryRepository {
     @Autowired
     SessionFactory sessionFactory;
 
-    public List<History> getHistoryListByTicketId(int id){
-        Query query = sessionFactory.getCurrentSession().createQuery("from History h where h.ticket_id = :id", History.class);
+    public List<History> getHistoryListByTicketId(Long id){
+        Query query = sessionFactory.getCurrentSession().createQuery("from History where ticket_id = :id", History.class);
+        query.setParameter("id", id);
         return query.list();
     }
 

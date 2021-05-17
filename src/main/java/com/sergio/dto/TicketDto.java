@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TicketDto implements Serializable {
 
-    private int id;
+    private Long id;
 
     @Pattern(regexp = "[a-z0-9~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}]{0,100}", message = "incorrectly name")
     private String name;
@@ -26,6 +26,16 @@ public class TicketDto implements Serializable {
     private UserDto userOwner;
     private UserDto userApprover;
     private CategoryDto category;
+    private String comment;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     private List<HistoryDto> historyList;
     private List<CommentDto> commentList;
     private List<FeedbackDto> feedbackList;
@@ -34,11 +44,11 @@ public class TicketDto implements Serializable {
     public TicketDto() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -152,5 +162,27 @@ public class TicketDto implements Serializable {
 
     public void setFeedbackList(List<FeedbackDto> feedbackList) {
         this.feedbackList = feedbackList;
+    }
+
+    @Override
+    public String toString() {
+        return "TicketDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", createdOn=" + createdOn +
+                ", desiredResolutionDate=" + desiredResolutionDate +
+                ", state=" + state +
+                ", urgency=" + urgency +
+                ", attachment=" + attachment +
+                ", userAssignee=" + userAssignee +
+                ", userOwner=" + userOwner +
+                ", userApprover=" + userApprover +
+                ", category=" + category +
+                ", comment='" + comment + '\'' +
+                ", historyList=" + historyList +
+                ", commentList=" + commentList +
+                ", feedbackList=" + feedbackList +
+                '}';
     }
 }

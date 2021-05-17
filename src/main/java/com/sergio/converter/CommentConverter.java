@@ -18,11 +18,15 @@ public class CommentConverter {
     @Autowired
     TicketConverter ticketConverter;
 
+    @Autowired
+    UserConverter userConverter;
+
     public Comment fromDto(CommentDto dto){
         Comment comment = new Comment();
         comment.setId(dto.getId());
         comment.setDate(dto.getDate());
         comment.setText(dto.getText());
+        comment.setUser(userConverter.fromDto(dto.getUser()));
         comment.setTicket(ticketConverter.fromDto(dto.getTicket()));
         return comment;
     }
@@ -32,6 +36,7 @@ public class CommentConverter {
         commentDto.setId(comment.getId());
         commentDto.setDate(comment.getDate());
         commentDto.setText(comment.getText());
+        commentDto.setUserDto(userConverter.toDto(comment.getUser()));
         commentDto.setTicket(ticketConverter.toDto(comment.getTicket()));
         return commentDto;
     }

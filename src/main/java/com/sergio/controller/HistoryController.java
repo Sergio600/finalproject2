@@ -28,12 +28,12 @@ public class HistoryController {
 
 
     @GetMapping(value = "/tickets/{id}/history")
-    public ResponseEntity getTicketHistory(@PathVariable int id, Principal principal){
+    public ResponseEntity getTicketHistory(@PathVariable Long id, Principal principal){
         return ResponseEntity.ok(historyConverter.toDtoList(historyService.getTicketHistory(id, principal)));
     }
 
 //    @PostMapping(value = "/tickets/{id}/comments")
-//    public ResponseEntity addHistoryToTicket(@PathVariable int id, @RequestBody HistoryDto historyDto, Principal principal){
+//    public ResponseEntity addHistoryToTicket(@PathVariable Long id, @RequestBody HistoryDto historyDto, Principal principal){
 //        historyService.addHistroryToTicket(id, historyConverter.fromDto(historyDto), principal);
 //        return new ResponseEntity(HttpStatus.CREATED);
 //    }

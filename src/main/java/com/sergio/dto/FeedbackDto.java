@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 public class FeedbackDto implements Serializable {
 
-    private int id;
+    private Long id;
     private int rate;
     private Timestamp date;
 
@@ -17,11 +17,11 @@ public class FeedbackDto implements Serializable {
     public FeedbackDto() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

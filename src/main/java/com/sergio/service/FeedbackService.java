@@ -14,11 +14,11 @@ public class FeedbackService {
     @Autowired
     FeedbackRepository feedbackRepository;
 
-    public void createFeedbackToTicket(int id, Feedback feedback, Principal principal){
+    public void createFeedbackToTicket(Long id, Feedback feedback, Principal principal){
 
     }
 
-    public List<Feedback> getTicketFeedback(int id, Principal principal) {
+    public List<Feedback> getTicketFeedback(Long id, Principal principal) {
         return feedbackRepository.getTicketFeedback(id);
     }
 }

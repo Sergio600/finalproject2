@@ -6,21 +6,31 @@ import java.sql.Timestamp;
 
 public class CommentDto implements Serializable {
 
-    private int id;
+    private Long id;
+    private UserDto user;
 
     @Pattern(regexp = "[a-z0-9~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}]{0,500}", message = "incorrectly description")
     private String text;
     private Timestamp date;
     private TicketDto ticket;
 
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUserDto(UserDto user) {
+        this.user = user;
+    }
+
     public CommentDto() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

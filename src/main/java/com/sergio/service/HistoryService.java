@@ -24,11 +24,11 @@ public class HistoryService {
         return historyRepository.getAllHistories();
     }
 
-    public List<History> getTicketHistory(int id, Principal principal) {
+    public List<History> getTicketHistory(Long id, Principal principal) {
         return historyRepository.getHistoryListByTicketId(id);
     }
 
-    public void addHistroryToTicket(int id, History history, Principal principal) {
+    public void addHistroryToTicket(Long id, History history, Principal principal) {
         User user = userService.getCurrentUser(principal.getName());
         history.setTicket(ticketService.getTicketById(id));
         history.setUser(user);

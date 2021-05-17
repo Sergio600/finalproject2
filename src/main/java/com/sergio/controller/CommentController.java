@@ -33,12 +33,12 @@ public class CommentController {
 
 
     @GetMapping(value = "/tickets/{id}/comments")
-    public ResponseEntity getTicketComments(@PathVariable int id, Principal principal){
+    public ResponseEntity getTicketComments(@PathVariable Long id, Principal principal){
         return ResponseEntity.ok(commentConverter.toDtoList(commentSevice.getTicketComments(id, principal)));
     }
 
     @PostMapping(value = "/tickets/{id}/comments")
-    public ResponseEntity addCommentToTicket(@PathVariable int id, @RequestBody CommentDto commentDto, Principal principal){
+    public ResponseEntity addCommentToTicket(@PathVariable Long id, @RequestBody CommentDto commentDto, Principal principal){
         commentSevice.addCommentToTicket(id, commentConverter.fromDto(commentDto), principal);
         return new ResponseEntity(HttpStatus.CREATED);
     }

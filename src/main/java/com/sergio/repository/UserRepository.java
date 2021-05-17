@@ -20,7 +20,7 @@ public class UserRepository {
         return user;
     }
 
-    public User getById(int id){
+    public User getById(Long id){
         Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery("from User u where u.id = :id", User.class);

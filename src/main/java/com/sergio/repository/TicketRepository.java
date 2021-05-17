@@ -27,7 +27,7 @@ public class TicketRepository {
         sessionFactory.getCurrentSession().update(ticket);
     }
 
-    public Optional<Ticket> getById(int id) {
+    public Optional<Ticket> getById(Long id) {
         Query query = sessionFactory.getCurrentSession().createQuery("from Ticket t where t.id = :id");
         query.setParameter("id", id);
 

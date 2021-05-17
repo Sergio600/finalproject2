@@ -23,7 +23,7 @@ public class FeedbackController {
     FeedbackConverter feedbackConverter;
 
     @GetMapping(value = "/tickets/{id}/feedback")
-    public ResponseEntity getTicketFeedback(@PathVariable int id, Principal principal){
+    public ResponseEntity getTicketFeedback(@PathVariable Long id, Principal principal){
         return ResponseEntity.ok(feedbackConverter.toDtoList(feedbackService.getTicketFeedback(id, principal)));
     }
 

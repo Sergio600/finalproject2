@@ -1,10 +1,7 @@
 package com.sergio.converter;
 
 import com.sergio.domain.Category;
-import com.sergio.domain.Comment;
 import com.sergio.dto.CategoryDto;
-import com.sergio.dto.CommentDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 

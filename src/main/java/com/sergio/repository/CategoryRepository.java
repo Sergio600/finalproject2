@@ -16,7 +16,7 @@ public class CategoryRepository {
     @Autowired
     SessionFactory sessionFactory;
 
-    public Category getCategoryById(int id){
+    public Category getCategoryById(Long id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Category c where c.id = :id", Category.class);
         query.setParameter("id", id);
         Category category = (Category) query.getSingleResult();

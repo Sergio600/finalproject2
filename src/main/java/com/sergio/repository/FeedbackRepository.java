@@ -21,7 +21,7 @@ public class FeedbackRepository {
         return feedback;
     }
 
-    public List<Feedback> getTicketFeedback(int id){
+    public List<Feedback> getTicketFeedback(Long id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Feedback where ticket_id = :id");
         query.setParameter("id", id);
         return query.list();

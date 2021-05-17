@@ -21,7 +21,7 @@ public class CommentReposiroty {
         return comment;
     }
 
-    public List<Comment> getTicketComments(int id){
+    public List<Comment> getTicketComments(Long id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Comment where ticket_id = :id");
         query.setParameter("id", id);
         return query.list();

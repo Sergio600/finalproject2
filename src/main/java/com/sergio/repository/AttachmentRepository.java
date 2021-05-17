@@ -14,7 +14,7 @@ public class AttachmentRepository {
     @Autowired
     SessionFactory sessionFactory;
 
-    public Attachment getAttachmentByTicketId(int id){
+    public Attachment getAttachmentByTicketId(Long id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Attachment a where a.ticket_id = :id", Attachment.class);
         query.setParameter("id", id);
         Attachment attachment = (Attachment) query.getSingleResult();

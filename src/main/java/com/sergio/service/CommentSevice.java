@@ -21,7 +21,7 @@ public class CommentSevice {
     @Autowired
     TicketService ticketService;
 
-    public List<Comment> getTicketComments(int id, Principal principal) {
+    public List<Comment> getTicketComments(Long id, Principal principal) {
         return commentReposiroty.getTicketComments(id);
     }
 
@@ -29,7 +29,7 @@ public class CommentSevice {
         return commentReposiroty.getAllComments();
     }
 
-    public void addCommentToTicket(int id, Comment comment, Principal principal) {
+    public void addCommentToTicket(Long id, Comment comment, Principal principal) {
         User user = userService.getCurrentUser(principal.getName());
         comment.setTicket(ticketService.getTicketById(id));
         comment.setUser(user);

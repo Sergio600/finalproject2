@@ -23,7 +23,7 @@ INSERT INTO CATEGORY(ID, NAME)
 VALUES (2, 'Benefits & Paper Work');
 
 INSERT INTO CATEGORY(ID, NAME)
-VALUES (3, 'Hardware & Softwware');
+VALUES (3, 'Hardware & Software');
 
 INSERT INTO CATEGORY(ID, NAME)
 VALUES (4, 'People Management');
@@ -50,10 +50,22 @@ INSERT INTO TICKET(ID, NAME, DESCRIPTION, CREATED_ON, DESIRED_RESOLUTION_DATE, A
 VALUES (5, 'Ticket 5', 'Approved and Manager is Approver', '2020-04-07', '2020-04-10', 1, 1, 2, 2, 3, 3);
 
 INSERT INTO HISTORY(ID, TICKET_ID, DATE, ACTION, USER_ID, DESCRIPTION)
-VALUES (1, 1, '2020-04-01', 'Action', 1, 'Description of history');
+VALUES (1, 1, '2020-04-01', 'Action', 1, 'Description of history ticket id 1');
+
+INSERT INTO HISTORY(ID, TICKET_ID, DATE, ACTION, USER_ID, DESCRIPTION)
+VALUES (2, 2, '2020-04-01', 'Action', 1, 'Description of history ticket id 2');
+
+INSERT INTO HISTORY(ID, TICKET_ID, DATE, ACTION, USER_ID, DESCRIPTION)
+VALUES (3, 2, '2020-04-01', 'Action', 1, 'Description of history ticket id 2');
 
 INSERT INTO COMMENT(ID, USER_ID, TEXT, DATE, TICKET_ID)
-VALUES (1, 1, 'It first comment of ticket ', '2020-04-06', 2);
+VALUES (1, 1, 'Comment ticket id =2 ', '2020-04-06', 2);
+
+INSERT INTO COMMENT(ID, USER_ID, TEXT, DATE, TICKET_ID)
+VALUES (2, 1, 'Comment ticket id =2 ', '2020-04-06', 2);
+
+INSERT INTO COMMENT(ID, USER_ID, TEXT, DATE, TICKET_ID)
+VALUES (3, 2, 'Comment ticket id =1 ', '2020-04-06', 1);
 
 INSERT INTO FEEDBACK(ID, USER_ID, RATE, DATE, TEXT, TICKET_ID)
 VALUES (1, 1, 5, '2020-07-07', 'FEEDBACK of TICKET!  ', 2);

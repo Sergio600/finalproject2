@@ -10,7 +10,7 @@ public class Attachment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
-    private int id;
+    private Long id;
 
 
     @Column(name = "blob", nullable = false)
@@ -27,11 +27,11 @@ public class Attachment {
     public Attachment() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -4,18 +4,19 @@ import java.io.Serializable;
 
 public class CategoryDto implements Serializable {
 
-    private int id;
+    private Long id;
     private String name;
 
 
     public CategoryDto() {
     }
 
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

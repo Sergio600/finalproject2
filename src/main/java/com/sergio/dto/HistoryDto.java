@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 public class HistoryDto implements Serializable {
 
-    private int id;
+    private Long id;
     private Timestamp date;
     private String action;
 
@@ -17,11 +17,11 @@ public class HistoryDto implements Serializable {
     public HistoryDto() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
