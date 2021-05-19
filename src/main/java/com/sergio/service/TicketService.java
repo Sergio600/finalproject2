@@ -68,16 +68,17 @@ public class TicketService {
 
 
 
-
-
     }
 
-    public void editTicket(Long id, Ticket ticket, Principal principal, State state) {
+    public void editTicket(Long id, TicketDto ticketDto, Principal principal) {
         User user = userService.getCurrentUser(principal.getName());
-        ticket.setId(id);
+        Ticket ticket = ticketConverter.fromDto(ticketDto);
+        System.out.println(ticket);
         ticket.setUserOwner(user);
         ticketRepository.updateTicket(ticket);
     }
+
+
 
     public List<Ticket> getUserTicketsByRole(Principal principal) {
         User user = userService.getCurrentUser(principal.getName());
