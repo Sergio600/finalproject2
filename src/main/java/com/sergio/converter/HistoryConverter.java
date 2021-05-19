@@ -16,6 +16,9 @@ public class HistoryConverter {
     @Autowired
     TicketConverter ticketConverter;
 
+    @Autowired
+    UserConverter userConverter;
+
     public History fromDto(HistoryDto dto){
         History history = new History();
 
@@ -24,6 +27,7 @@ public class HistoryConverter {
         history.setAction(dto.getAction());
         history.setDescription(dto.getDescription());
         history.setTicket(ticketConverter.fromDto(dto.getTicket()));
+        history.setUser(userConverter.fromDto(dto.getUser()));
 
         return history;
 
@@ -36,6 +40,7 @@ public class HistoryConverter {
         historyDto.setAction(history.getAction());
         historyDto.setDescription(history.getDescription());
         historyDto.setTicket(ticketConverter.toDto(history.getTicket()));
+        historyDto.setUser(userConverter.toDto(history.getUser()));
 
         return historyDto;
     }

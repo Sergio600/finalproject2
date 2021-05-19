@@ -3,6 +3,7 @@ package com.sergio.dto;
 import com.sergio.domain.Attachment;
 import com.sergio.enums.State;
 import com.sergio.enums.Urgency;
+
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -27,6 +28,26 @@ public class TicketDto implements Serializable {
     private UserDto userApprover;
     private CategoryDto category;
     private String comment;
+
+    private List<CommentDto> comments;
+    private List<HistoryDto> histories;
+
+    public List<CommentDto> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDto> comments) {
+        this.comments = comments;
+    }
+
+    public List<HistoryDto> getHistories() {
+        return histories;
+    }
+
+    public void setHistories(List<HistoryDto> histories) {
+        this.histories = histories;
+    }
+
 
     public String getComment() {
         return comment;

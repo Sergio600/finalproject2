@@ -25,11 +25,15 @@ import java.security.Principal;
 @CrossOrigin(origins = "http://localhost:3000")
 public class TicketController {
 
-    @Autowired
-    TicketService ticketService;
+    private TicketService ticketService;
+    private TicketConverter ticketConverter;
 
     @Autowired
-    TicketConverter ticketConverter;
+    public TicketController(TicketService ticketService,
+                            TicketConverter ticketConverter) {
+        this.ticketService = ticketService;
+        this.ticketConverter = ticketConverter;
+    }
 
     @GetMapping()
     public ResponseEntity getUserTicketsByRole(Principal principal) {
@@ -52,30 +56,23 @@ public class TicketController {
     }
 
 
-
-
-
     @PostMapping()
     public ResponseEntity createTicket(@RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
                                        @RequestParam(value = "ticketDto") String ticketDto,
                                        Principal principal) {
-
+        System.out.println(ticketDto);
         ticketService.createTicket(ticketConverter.fromJson(ticketDto), principal, State.NEW);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
 
-
-
-
-
     @PostMapping(value = "/draft")
-    public ResponseEntity createTicketDraft(@RequestParam(value = "files", required = false) CommonsMultipartFile[] files
-            , @RequestParam(value = "ticketDto") String ticketDto
-            , Principal principal) {
+    public ResponseEntity createTicketDraft(@RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
+                                            @RequestParam(value = "ticketDto") String ticketDto,
+                                            Principal principal) {
         System.out.println(ticketDto);
         ticketService.createTicket(ticketConverter.fromJson(ticketDto), principal, State.DRAFT);
-        return ResponseEntity.ok("Ticket draft is created");
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PutMapping(value = "/id")
@@ -89,6 +86,4 @@ public class TicketController {
         ticketService.editTicket(id, ticketConverter.fromDto(ticketDto), principal, State.DRAFT);
         return ResponseEntity.ok("Ticket draft is edited");
     }
-
-
 }

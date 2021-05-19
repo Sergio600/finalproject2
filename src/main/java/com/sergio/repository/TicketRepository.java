@@ -19,6 +19,7 @@ public class TicketRepository {
     SessionFactory sessionFactory;
 
     public Ticket save(Ticket ticket) {
+        System.out.println(ticket);
         sessionFactory.getCurrentSession().save(ticket);
         return ticket;
     }

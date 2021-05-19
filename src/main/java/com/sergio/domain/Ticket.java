@@ -153,4 +153,21 @@ public class Ticket {
     public void setUserApprover(User userApprover) {
         this.userApprover = userApprover;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", createdOn=" + createdOn +
+                ", desiredResolutionDate=" + desiredResolutionDate +
+                ", userAssignee=" + userAssignee +
+                ", userOwner=" + userOwner +
+                ", state=" + state +
+                ", category=" + category +
+                ", urgency=" + urgency +
+                ", userApprover=" + userApprover +
+                '}';
+    }
 }

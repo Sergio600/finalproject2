@@ -7,30 +7,38 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Lazy
 public class UserConverter {
 
-    @Autowired
     FeedbackConverter feedbackConverter;
-
-    @Autowired
     TicketConverter ticketConverter;
-
-    @Autowired
     HistoryConverter historyConverter;
-
-    @Autowired
     CommentConverter commentConverter;
 
-    public User fromDto (UserDto dto){
-        User user = new User();
+    @Autowired
+    public UserConverter (@Lazy FeedbackConverter feedbackConverter,
+                          TicketConverter ticketConverter,
+                          @Lazy HistoryConverter historyConverter,
+                          @Lazy CommentConverter commentConverter){
+        this.feedbackConverter = feedbackConverter;
+        this.ticketConverter = ticketConverter;
+        this.historyConverter = historyConverter;
+        this.commentConverter = commentConverter;
 
-        user.setId(dto.getId());
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        user.setRole(dto.getRole());
-        user.setEmail(dto.getEmail());
-        return user;
+    }
+
+    public User fromDto (UserDto dto){
+        if(dto !=null){
+            User user = new User();
+
+            user.setId(dto.getId());
+            user.setFirstName(dto.getFirstName());
+            user.setLastName(dto.getLastName());
+            user.setRole(dto.getRole());
+            user.setEmail(dto.getEmail());
+            return user;
+        } else {
+            return new User();
+        }
     }
 
 

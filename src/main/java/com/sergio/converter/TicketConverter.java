@@ -2,6 +2,7 @@ package com.sergio.converter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sergio.domain.Comment;
 import com.sergio.domain.Ticket;
 import com.sergio.dto.TicketDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,52 +14,57 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@Lazy
 public class TicketConverter {
 
-    @Autowired
-    UserConverter userConverter;
-
-    @Autowired
-    CategoryConverter categoryConverter;
-
-    @Autowired
-    HistoryConverter historyConverter;
-
-    @Autowired
-    CommentConverter commentConverter;
-
-    @Autowired
-    FeedbackConverter feedbackConverter;
-
+    private UserConverter userConverter;
+    private CategoryConverter categoryConverter;
+    private HistoryConverter historyConverter;
+    private CommentConverter commentConverter;
+    private FeedbackConverter feedbackConverter;
     private ObjectMapper objectMapper;
 
     @Autowired
-    public TicketConverter(ObjectMapper objectMapper){
+    public TicketConverter(ObjectMapper objectMapper,
+                           @Lazy UserConverter userConverter,
+                           CategoryConverter categoryConverter,
+                           @Lazy HistoryConverter historyConverter,
+                           @Lazy CommentConverter commentConverter,
+                           @Lazy FeedbackConverter feedbackConverter
+    ) {
         this.objectMapper = objectMapper;
+        this.userConverter = userConverter;
+        this.categoryConverter = categoryConverter;
+        this.historyConverter = historyConverter;
+        this.commentConverter = commentConverter;
+        this.feedbackConverter = feedbackConverter;
     }
 
     public Ticket fromDto(TicketDto dto) {
-        Ticket ticket = new Ticket();
-        ticket.setId(dto.getId());
-        ticket.setName(dto.getName());
-        ticket.setDescription(dto.getDescription());
-        ticket.setCreatedOn(dto.getCreatedOn());
-        ticket.setDesiredResolutionDate(dto.getDesiredResolutionDate());
-        ticket.setState(dto.getState());
-        ticket.setUrgency(dto.getUrgency());
+        if (dto != null) {
+
+            Ticket ticket = new Ticket();
+            ticket.setId(dto.getId());
+            ticket.setName(dto.getName());
+            ticket.setDescription(dto.getDescription());
+            ticket.setCreatedOn(dto.getCreatedOn());
+            ticket.setDesiredResolutionDate(dto.getDesiredResolutionDate());
+            ticket.setState(dto.getState());
+            ticket.setUrgency(dto.getUrgency());
 //        ticket.setAttachment(dto.getAttachment());
 
 //        ticket.setUserAssignee(userConverter.fromDto(dto.getUserAssignee()));
-//        ticket.setUserOwner(userConverter.fromDto(dto.getUserOwner()));
+            ticket.setUserOwner(userConverter.fromDto(dto.getUserOwner()));
 //        ticket.setUserApprover(userConverter.fromDto(dto.getUserApprover()));
-        ticket.setCategory(categoryConverter.fromDto(dto.getCategory()));
+            ticket.setCategory(categoryConverter.fromDto(dto.getCategory()));
 
 //        ticket.setHistoryList(historyConverter.fromDtoList(dto.getHistoryList()));
 //        ticket.setCommentList(commentConverter.fromDtoList(dto.getCommentList()));
 //        ticket.setFeedbackList(feedbackConverter.fromDtoList(dto.getFeedbackList()));
 
-        return ticket;
+            return ticket;
+        } else {
+            return null;
+        }
     }
 
     public TicketDto toDto(Ticket ticket) {
@@ -74,7 +80,7 @@ public class TicketConverter {
 //        ticketDto.setAttachment(ticket.getAttachment());
 
 //        ticketDto.setUserAssignee(userConverter.toDto(ticket.getUserAssignee()));
-//        ticketDto.setUserOwner(userConverter.toDto(ticket.getUserOwner()));
+        ticketDto.setUserOwner(userConverter.toDto(ticket.getUserOwner()));
 //        ticketDto.setUserApprover(userConverter.toDto(ticket.getUserApprover()));
         ticketDto.setCategory(categoryConverter.toDto(ticket.getCategory()));
 
@@ -106,7 +112,7 @@ public class TicketConverter {
             try {
                 ticketDto = objectMapper.readValue(ticketJson, TicketDto.class);
                 System.out.println(ticketDto);
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

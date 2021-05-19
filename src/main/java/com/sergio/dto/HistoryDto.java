@@ -9,12 +9,23 @@ public class HistoryDto implements Serializable {
     private Long id;
     private Timestamp date;
     private String action;
+    private UserDto user;
+
+
 
     @Pattern(regexp = "[a-z0-9~.\"(),:;<>@\\[\\]!#$%&'*+-/=?^_`{|}]{0,500}", message = "incorrectly description")
     private String description;
     private TicketDto ticket;
 
     public HistoryDto() {
+    }
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
     }
 
     public Long getId() {

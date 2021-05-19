@@ -15,13 +15,18 @@ import java.util.stream.Collectors;
 @Lazy
 public class CommentConverter {
 
-    @Autowired
-    TicketConverter ticketConverter;
+    private TicketConverter ticketConverter;
+    private UserConverter userConverter;
 
     @Autowired
-    UserConverter userConverter;
+    public CommentConverter(TicketConverter ticketConverter,
+                            @Lazy UserConverter userConverter) {
+        this.ticketConverter = ticketConverter;
+        this.userConverter = userConverter;
 
-    public Comment fromDto(CommentDto dto){
+    }
+
+    public Comment fromDto(CommentDto dto) {
         Comment comment = new Comment();
         comment.setId(dto.getId());
         comment.setDate(dto.getDate());
@@ -31,7 +36,7 @@ public class CommentConverter {
         return comment;
     }
 
-    public CommentDto toDto(Comment comment){
+    public CommentDto toDto(Comment comment) {
         CommentDto commentDto = new CommentDto();
         commentDto.setId(comment.getId());
         commentDto.setDate(comment.getDate());
@@ -41,14 +46,14 @@ public class CommentConverter {
         return commentDto;
     }
 
-    public List<Comment> fromDtoList(List<CommentDto> dtoList){
+    public List<Comment> fromDtoList(List<CommentDto> dtoList) {
         return dtoList
                 .stream()
                 .map(this::fromDto)
                 .collect(Collectors.toList());
     }
 
-    public List<CommentDto> toDtoList(List<Comment> list){
+    public List<CommentDto> toDtoList(List<Comment> list) {
         return list
                 .stream()
                 .map(this::toDto)

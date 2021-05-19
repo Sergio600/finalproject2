@@ -8,30 +8,40 @@ import com.sergio.enums.Role;
 import com.sergio.enums.State;
 import com.sergio.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.List;
 
 @Service
+@Lazy
 public class TicketService {
 
-    private final TicketRepository ticketRepository;
-    private final UserService userService;
-    private final TicketConverter ticketConverter;
-    private final CategoryService categoryService;
+    private  TicketRepository ticketRepository;
+    private  UserService userService;
+    private  TicketConverter ticketConverter;
+    private  CategoryService categoryService;
+    private  CommentService commentService;
+    private  HistoryService historyService;
 
     @Autowired
     public TicketService(CategoryService categoryService,
-                         TicketConverter ticketConverter,
+                         @Lazy TicketConverter ticketConverter,
                          UserService userService,
-                         TicketRepository ticketRepository) {
+                         TicketRepository ticketRepository,
+                         CommentService commentService,
+                         HistoryService historyService) {
         this.categoryService = categoryService;
         this.ticketConverter = ticketConverter;
         this.userService = userService;
         this.ticketRepository = ticketRepository;
-
+        this.commentService = commentService;
+        this.historyService = historyService;
     }
+
+    public TicketService(){}
 
     public List<Ticket> getAllTickets() {
         return ticketRepository.getAllTickets();
@@ -41,6 +51,8 @@ public class TicketService {
         return ticketRepository.getById(id).get();
     }
 
+
+    @Transactional
     public void createTicket(TicketDto ticketDto, Principal principal, State state) {
         User user = userService.getCurrentUser(principal.getName());
         Ticket ticket = ticketConverter.fromDto(ticketDto);
@@ -48,6 +60,16 @@ public class TicketService {
         ticket.setState(state);
         ticket.setCategory(categoryService.getCategoryById(ticketDto.getCategory().getId()));
         ticketRepository.save(ticket);
+        historyService.saveTicketCreationHistory(user, ticket);
+
+        if(ticketDto.getComment() != null){
+            commentService.createCommentToTicket(ticketDto.getComment(), user, ticket);
+        }
+
+
+
+
+
     }
 
     public void editTicket(Long id, Ticket ticket, Principal principal, State state) {

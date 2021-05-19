@@ -13,10 +13,15 @@ import java.util.stream.Collectors;
 @Lazy
 public class FeedbackConverter {
 
-    @Autowired
-    TicketConverter ticketConverter;
+    private TicketConverter ticketConverter;
 
-    public Feedback fromDto (FeedbackDto dto){
+    @Autowired
+    public FeedbackConverter(@Lazy TicketConverter ticketConverter) {
+        this.ticketConverter = ticketConverter;
+    }
+
+
+    public Feedback fromDto(FeedbackDto dto) {
         Feedback feedback = new Feedback();
         feedback.setId(dto.getId());
         feedback.setRate(dto.getRate());
@@ -28,7 +33,7 @@ public class FeedbackConverter {
     }
 
 
-    public FeedbackDto toDto(Feedback feedback){
+    public FeedbackDto toDto(Feedback feedback) {
         FeedbackDto feedbackDto = new FeedbackDto();
         feedbackDto.setId(feedback.getId());
         feedbackDto.setRate(feedback.getRate());
@@ -39,20 +44,19 @@ public class FeedbackConverter {
         return feedbackDto;
     }
 
-    public List<Feedback> fromDtoList(List<FeedbackDto> dtoList){
+    public List<Feedback> fromDtoList(List<FeedbackDto> dtoList) {
         return dtoList
                 .stream()
                 .map(this::fromDto)
                 .collect(Collectors.toList());
     }
 
-    public List<FeedbackDto> toDtoList(List<Feedback> list){
+    public List<FeedbackDto> toDtoList(List<Feedback> list) {
         return list
                 .stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
-
 
 
 }
