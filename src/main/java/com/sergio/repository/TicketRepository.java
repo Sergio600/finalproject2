@@ -65,7 +65,7 @@ public class TicketRepository {
         query.setParameter("approverID", user.getId());
         query.setParameter("stateIdApproved", State.APPROVED.ordinal());
         query.setParameter("stateIdDeclined", State.DECLINED.ordinal());
-        query.setParameter("stateIdCancelled", State.CANCELED.ordinal());
+        query.setParameter("stateIdCancelled", State.CANCELLED.ordinal());
         query.setParameter("stateIdInProgress", State.INPROGRESS.ordinal());
         query.setParameter("stateIdDone", State.DONE.ordinal());
         return query.list();

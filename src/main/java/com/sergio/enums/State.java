@@ -7,5 +7,5 @@ public enum State {
     DECLINED,
     INPROGRESS,
     DONE,
-    CANCELED
+    CANCELLED
 }

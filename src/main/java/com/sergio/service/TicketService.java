@@ -71,13 +71,14 @@ public class TicketService {
     }
 
     public void editTicket(Long id, TicketDto ticketDto, Principal principal) {
-        User user = userService.getCurrentUser(principal.getName());
         Ticket ticket = ticketRepository.getById(id).get();
         ticket.setCategory(categoryService.getCategoryById(ticketDto.getCategory().getId()));
         ticket.setName(ticketDto.getName());
         ticket.setDescription(ticketDto.getDescription());
         ticket.setUrgency(ticketDto.getUrgency());
         ticket.setDesiredResolutionDate(ticketDto.getDesiredResolutionDate());
+        ticket.setState(ticketDto.getState());
+
         ticketRepository.updateTicket(ticket);
     }
 
