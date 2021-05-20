@@ -1,6 +1,7 @@
 package com.sergio.repository;
 
 import com.sergio.domain.Comment;
+import com.sergio.domain.Ticket;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,14 @@ public class CommentReposiroty {
         sessionFactory.getCurrentSession().save(comment);
         return comment;
     }
+
+
+//    public void updateTicketComment(Comment comment) {
+//        sessionFactory.getCurrentSession().update(comment);
+//    }
+
+
+
 
     public List<Comment> getTicketComments(Long id){
         Query query = sessionFactory.getCurrentSession().createQuery("from Comment where ticket_id = :id");

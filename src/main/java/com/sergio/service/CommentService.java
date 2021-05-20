@@ -8,6 +8,7 @@ import com.sergio.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.security.Principal;
 import java.sql.Timestamp;
@@ -61,4 +62,19 @@ public class CommentService {
         comment.setDate(new Timestamp(System.currentTimeMillis()));
         commentReposiroty.addCommentToTicket(comment);
     }
+
+//    public void editTicketComment(String text, User user, Ticket ticket) {
+//
+//        List<Comment> commentList = commentReposiroty.getTicketComments(ticket.getId());
+//        System.out.println(commentList);
+//        Comment comment = commentList.get(0);
+//        comment.setUser(user);
+//        comment.setTicket(ticket);
+//        comment.setText(text);
+//        comment.setDate(new Timestamp(System.currentTimeMillis()));
+//
+//        System.out.println(comment);
+//
+//        commentReposiroty.updateTicketComment(comment);
+//    }
 }

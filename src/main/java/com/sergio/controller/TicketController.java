@@ -75,16 +75,26 @@ public class TicketController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping(value = "/id")
-    public ResponseEntity editTicket(@PathVariable Long id, @RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
-                                     @RequestParam(value = "ticketDto") String ticketDto,
+//    @PutMapping(value = "/{id}")
+//    public ResponseEntity editTicket(@PathVariable Long id,
+//                                     @RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
+//                                     @RequestParam(value = "ticketDto") String ticketDto,
+//                                     Principal principal) {
+//        ticketService.editTicket(id, ticketConverter.fromJson(ticketDto), principal);
+//        return ResponseEntity.ok(HttpStatus.OK);
+//    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity editTicket(@PathVariable Long id,
+                                     @RequestBody TicketDto ticketDto,
                                      Principal principal) {
-        ticketService.editTicket(id, ticketConverter.fromJson(ticketDto), principal);
-        return ResponseEntity.ok("Ticket is edited ");
+        ticketService.editTicket(id, ticketDto, principal);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}/draft")
-    public ResponseEntity editTicketDraft(@PathVariable Long id, @RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
+    public ResponseEntity editTicketDraft(@PathVariable Long id,
+                                          @RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
                                           @RequestParam(value = "ticketDto") String ticketDto,
                                           Principal principal) {
         ticketService.editTicket(id, ticketConverter.fromJson(ticketDto), principal);
