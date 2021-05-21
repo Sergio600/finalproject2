@@ -16,7 +16,8 @@ public class FeedbackRepository {
     @Autowired
     SessionFactory sessionFactory;
 
-    public Feedback save(Feedback feedback){
+    public Feedback saveFeedbackToTicket(Feedback feedback){
+        System.out.println("-----------------------------" + feedback);
         sessionFactory.getCurrentSession().save(feedback);
         return feedback;
     }

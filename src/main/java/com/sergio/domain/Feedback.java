@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 public class Feedback {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -85,5 +85,17 @@ public class Feedback {
 
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
+    }
+
+    @Override
+    public String toString() {
+        return "Feedback{" +
+                "id=" + id +
+                ", user=" + user +
+                ", rate=" + rate +
+                ", date=" + date +
+                ", text='" + text + '\'' +
+                ", ticket=" + ticket +
+                '}';
     }
 }

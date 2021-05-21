@@ -46,7 +46,7 @@ public class HistoryController {
     @PostMapping(value = "/tickets/{id}/history")
     public ResponseEntity addHistoryToTicket(@PathVariable Long id, @RequestBody HistoryDto historyDto, Principal principal){
         System.out.println("---------------------------------");
-        historyService.addHistroryToTicket(id, historyConverter.fromDto(historyDto), principal);
+        historyService.addHistoryToTicket(id, historyConverter.fromDto(historyDto), principal);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 }

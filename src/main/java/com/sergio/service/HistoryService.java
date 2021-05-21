@@ -40,7 +40,7 @@ public class HistoryService {
         return historyRepository.getHistoryListByTicketId(id);
     }
 
-    public void addHistroryToTicket(Long id, History history, Principal principal) {
+    public void addHistoryToTicket(Long id, History history, Principal principal) {
         User user = userService.getCurrentUser(principal.getName());
         history.setTicket(ticketService.getTicketById(id));
         history.setUser(user);
