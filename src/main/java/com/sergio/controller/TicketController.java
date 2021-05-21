@@ -1,8 +1,10 @@
 package com.sergio.controller;
 
+import com.sergio.converter.HistoryConverter;
 import com.sergio.converter.TicketConverter;
 import com.sergio.dto.TicketDto;
 import com.sergio.enums.State;
+import com.sergio.service.HistoryService;
 import com.sergio.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +29,15 @@ public class TicketController {
 
     private TicketService ticketService;
     private TicketConverter ticketConverter;
+    private HistoryService historyService;
 
     @Autowired
     public TicketController(TicketService ticketService,
-                            TicketConverter ticketConverter) {
+                            TicketConverter ticketConverter,
+                            HistoryService historyService) {
         this.ticketService = ticketService;
         this.ticketConverter = ticketConverter;
+        this.historyService = historyService;
     }
 
     @GetMapping()

@@ -44,6 +44,7 @@ public class HistoryService {
         User user = userService.getCurrentUser(principal.getName());
         history.setTicket(ticketService.getTicketById(id));
         history.setUser(user);
+
         historyRepository.saveHistoryToTicket(history);
     }
 
