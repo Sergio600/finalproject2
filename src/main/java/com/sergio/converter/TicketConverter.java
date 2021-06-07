@@ -52,9 +52,9 @@ public class TicketConverter {
             ticket.setUrgency(dto.getUrgency());
 //        ticket.setAttachment(dto.getAttachment());
 
-//        ticket.setUserAssignee(userConverter.fromDto(dto.getUserAssignee()));
+            ticket.setUserAssignee(userConverter.fromDto(dto.getUserAssignee()));
             ticket.setUserOwner(userConverter.fromDto(dto.getUserOwner()));
-//        ticket.setUserApprover(userConverter.fromDto(dto.getUserApprover()));
+            ticket.setUserApprover(userConverter.fromDto(dto.getUserApprover()));
             ticket.setCategory(categoryConverter.fromDto(dto.getCategory()));
 
 //        ticket.setHistoryList(historyConverter.fromDtoList(dto.getHistoryList()));
@@ -79,9 +79,9 @@ public class TicketConverter {
         ticketDto.setUrgency(ticket.getUrgency());
 //        ticketDto.setAttachment(ticket.getAttachment());
 
-//        ticketDto.setUserAssignee(userConverter.toDto(ticket.getUserAssignee()));
+        ticketDto.setUserAssignee(userConverter.toDto(ticket.getUserAssignee()));
         ticketDto.setUserOwner(userConverter.toDto(ticket.getUserOwner()));
-//        ticketDto.setUserApprover(userConverter.toDto(ticket.getUserApprover()));
+        ticketDto.setUserApprover(userConverter.toDto(ticket.getUserApprover()));
         ticketDto.setCategory(categoryConverter.toDto(ticket.getCategory()));
 
 //        ticketDto.setHistoryList(historyConverter.toDtoList(ticket.getHistoryList()));
@@ -111,7 +111,6 @@ public class TicketConverter {
 
             try {
                 ticketDto = objectMapper.readValue(ticketJson, TicketDto.class);
-                System.out.println(ticketDto);
             } catch (Exception e) {
                 e.printStackTrace();
             }

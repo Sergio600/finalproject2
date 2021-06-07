@@ -46,7 +46,6 @@ public class Ticket {
     @JoinColumn(name = "owner_id", nullable = false)
     private User userOwner;
 
-    //еще надо здесь доработать
     @Column(name = "state_id", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private State state;

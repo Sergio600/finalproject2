@@ -20,4 +20,9 @@ public class AttachmentRepository {
         Attachment attachment = (Attachment) query.getSingleResult();
         return attachment;
     }
+
+    public void save(Attachment attachment){
+        System.out.println(attachment.getId());
+        sessionFactory.getCurrentSession().save(attachment);
+    }
 }

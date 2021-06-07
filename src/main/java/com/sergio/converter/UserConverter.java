@@ -29,7 +29,6 @@ public class UserConverter {
     public User fromDto (UserDto dto){
         if(dto !=null){
             User user = new User();
-
             user.setId(dto.getId());
             user.setFirstName(dto.getFirstName());
             user.setLastName(dto.getLastName());
@@ -37,18 +36,22 @@ public class UserConverter {
             user.setEmail(dto.getEmail());
             return user;
         } else {
-            return new User();
+            return null;
         }
     }
 
 
     public UserDto toDto (User user){
-        UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setRole(user.getRole());
-        userDto.setEmail(user.getEmail());
-        return userDto;
+        if (user!=null){
+            UserDto userDto = new UserDto();
+            userDto.setId(user.getId());
+            userDto.setFirstName(user.getFirstName());
+            userDto.setLastName(user.getLastName());
+            userDto.setRole(user.getRole());
+            userDto.setEmail(user.getEmail());
+            return userDto;
+        } else {
+            return null;
+        }
     }
 }

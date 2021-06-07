@@ -8,21 +8,19 @@ import java.sql.Blob;
 public class Attachment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
-
 
     @Column(name = "blob", nullable = false)
     private Blob blob;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = true)
     private String name;
 
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "ticket_id", nullable = false)
     private Ticket ticket;
-
 
     public Attachment() {
     }

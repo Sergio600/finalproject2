@@ -65,8 +65,7 @@ public class TicketController {
     public ResponseEntity createTicket(@RequestParam(value = "files", required = false) CommonsMultipartFile[] files,
                                        @RequestParam(value = "ticketDto") String ticketDto,
                                        Principal principal) {
-        System.out.println(ticketDto);
-        ticketService.createTicket(ticketConverter.fromJson(ticketDto), principal, State.NEW);
+        ticketService.createTicket(ticketConverter.fromJson(ticketDto), principal, State.NEW, files);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
@@ -76,7 +75,7 @@ public class TicketController {
                                             @RequestParam(value = "ticketDto") String ticketDto,
                                             Principal principal) {
         System.out.println(ticketDto);
-        ticketService.createTicket(ticketConverter.fromJson(ticketDto), principal, State.DRAFT);
+        ticketService.createTicket(ticketConverter.fromJson(ticketDto), principal, State.DRAFT, files);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

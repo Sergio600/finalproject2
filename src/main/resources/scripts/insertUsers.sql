@@ -1,20 +1,20 @@
 INSERT INTO USER (ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
-VALUES (1, 'Employee', 'User 1', 0, 'user1_mogilev@yopmail.com', 'P@ssword1');
+VALUES (1, 'Employee', 'User 1', 0, 'user11_mogilev@yopmail.com', 'P@ssword1');
 
 INSERT INTO USER (ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
-VALUES (2, 'Employee', 'User 2', 0, 'user2_mogilev@yopmail.com', 'P@ssword1');
+VALUES (2, 'Employee', 'User 2', 0, 'user22_mogilev@yopmail.com', 'P@ssword1');
 
 INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
-VALUES (3, 'Manager', 'Manager 1', 1, 'manager1_mogilev@yopmail.com', 'P@ssword1');
+VALUES (3, 'Manager', 'Manager 1', 1, 'manager11_mogilev@yopmail.com', 'P@ssword1');
 
 INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
-VALUES (4, 'Manager', 'Manager 2', 1, 'manager2_mogilev@yopmail.com', 'P@ssword1');
+VALUES (4, 'Manager', 'Manager 2', 1, 'manager22_mogilev@yopmail.com', 'P@ssword1');
 
 INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
-VALUES (5, 'Engineer', 'Engineer 1', 2, 'engineer1_mogilev@yopmail.com', 'P@ssword1');
+VALUES (5, 'Engineer', 'Engineer 1', 2, 'engineer11_mogilev@yopmail.com', 'P@ssword1');
 
 INSERT INTO USER(ID, FIRST_NAME, LAST_NAME, ROLE_ID, EMAIL, PASSWORD)
-VALUES (6, 'Engineer', 'Engineer 2', 2, 'engineer2_mogilev@yopmail.com', 'P@ssword1');
+VALUES (6, 'Engineer', 'Engineer 2', 2, 'engineer22_mogilev@yopmail.com', 'P@ssword1');
 
 INSERT INTO CATEGORY(ID, NAME)
 VALUES (1, 'Application & Services');

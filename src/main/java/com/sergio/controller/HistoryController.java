@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,12 +30,11 @@ public class HistoryController {
         this.historyService = historyService;
     }
 
-
     @GetMapping(value = "/histories")
+    // исправить на history
     public ResponseEntity getAllComments() {
         return ResponseEntity.ok(historyConverter.toDtoList(historyService.getAllHistories()));
     }
-
 
     @GetMapping(value = "/tickets/{id}/history")
     public ResponseEntity getTicketHistory(@PathVariable Long id, Principal principal) {

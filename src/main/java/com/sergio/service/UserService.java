@@ -6,6 +6,8 @@ import com.sergio.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -17,5 +19,10 @@ public class UserService {
             throw new InvalidArgumentException("Name can't be null!");
         }
         return userRepository.getByEmail(email);
+    }
+
+    public String[] getManagersEmails(){
+        List<User> usersManagers =  userRepository.getManagers();
+        return usersManagers.stream().map(User::getEmail).toArray(String[]::new);
     }
 }
