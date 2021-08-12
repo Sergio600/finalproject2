@@ -1,81 +1,50 @@
 package com.sergio.domain;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
+@Data
 @Table(name = "History")
-public class History {
+public class History implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ticket_id", nullable = false)
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
-    @Column(name = "date", nullable = false)
-    private Timestamp date;
+    @NotNull
+    @Column(name = "date")
+    private LocalDateTime date;
 
+    @NotNull
     @Column(name = "action")
     private String action;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "description")
     private String description;
 
-    public History() {}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Timestamp getDate() {
-        return date;
-    }
-
-    public void setDate(Timestamp date) {
-        this.date = date;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Ticket getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

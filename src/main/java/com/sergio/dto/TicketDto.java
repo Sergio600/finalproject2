@@ -7,6 +7,7 @@ import com.sergio.enums.Urgency;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TicketDto implements Serializable {
@@ -97,7 +98,7 @@ public class TicketDto implements Serializable {
         this.createdOn = createdOn;
     }
 
-    public Timestamp getDesiredResolutionDate() {
+    public LocalDateTime getDesiredResolutionDate() {
         return desiredResolutionDate;
     }
 

@@ -1,59 +1,43 @@
 package com.sergio.domain;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.Value;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.sql.Blob;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
+@Data
 @Table(name = "Attachment")
-public class Attachment {
+public class Attachment implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "blob", nullable = false)
+    @NotNull
+    @Column(name = "blob")
     private Blob blob;
 
-    @Column(name = "name", nullable = true)
+    @NotNull
+    @Column(name = "name")
     private String name;
 
-    @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name = "ticket_id", nullable = false)
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
-    public Attachment() {
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Blob getBlob() {
-        return blob;
-    }
-
-    public void setBlob(Blob blob) {
-        this.blob = blob;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Ticket getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
 }

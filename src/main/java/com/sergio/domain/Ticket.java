@@ -2,171 +2,73 @@ package com.sergio.domain;
 
 import com.sergio.enums.State;
 import com.sergio.enums.Urgency;
+import lombok.Data;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.sql.Timestamp;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import static javax.persistence.EnumType.ORDINAL;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "Ticket")
-public class Ticket {
+@Data
+@Table(name = "Tickets")
+public class Ticket implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @NotNull
+    @Column(name = "name", length = 100)
     private String name;
 
-    @Column(name = "description", nullable = false, length = 500)
+    @NotNull
+    @Column(name = "description", length = 500)
     private String description;
 
-    @Column(name = "created_on", nullable = false)
-    private Timestamp createdOn;
+    @NotNull
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
 
     @Column(name = "desired_resolution_date")
-    private Timestamp desiredResolutionDate;
+    private LocalDateTime desiredResolutionDate;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "assignee_id")
     private User userAssignee;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "owner_id", nullable = false)
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private User userOwner;
 
-    @Column(name = "state_id", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @NotNull
+    @Column(name = "state_id")
+    @Enumerated(ORDINAL)
     private State state;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", nullable = false)
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column(name = "urgency_id", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @NotNull
+    @Column(name = "urgency_id")
+    @Enumerated(ORDINAL)
     private Urgency urgency;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "approver_id")
     private User userApprover;
 
-    public Ticket() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Timestamp getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Timestamp createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public Timestamp getDesiredResolutionDate() {
-        return desiredResolutionDate;
-    }
-
-    public void setDesiredResolutionDate(Timestamp desiredResolutionDate) {
-        this.desiredResolutionDate = desiredResolutionDate;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
-    public Urgency getUrgency() {
-        return urgency;
-    }
-
-    public void setUrgency(Urgency urgency) {
-        this.urgency = urgency;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public User getUserAssignee() {
-        return userAssignee;
-    }
-
-    public void setUserAssignee(User userAssignee) {
-        this.userAssignee = userAssignee;
-    }
-
-    public User getUserOwner() {
-        return userOwner;
-    }
-
-    public void setUserOwner(User userOwner) {
-        this.userOwner = userOwner;
-    }
-
-    public User getUserApprover() {
-        return userApprover;
-    }
-
-    public void setUserApprover(User userApprover) {
-        this.userApprover = userApprover;
-    }
-
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", createdOn=" + createdOn +
-                ", desiredResolutionDate=" + desiredResolutionDate +
-                ", userAssignee=" + userAssignee +
-                ", userOwner=" + userOwner +
-                ", state=" + state +
-                ", category=" + category +
-                ", urgency=" + urgency +
-                ", userApprover=" + userApprover +
-                '}';
-    }
 }
